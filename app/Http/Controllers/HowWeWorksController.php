@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class HowWeWorksController extends Controller
 {
+    // Main Info Store
     public function storeMainInfo(Request $request)
     {
         $request->validate([
@@ -31,6 +32,7 @@ class HowWeWorksController extends Controller
         return response()->json(['message' => 'Main information added successfully!'], 201);
     }
 
+    // Update Main Info
     public function updateMainInfo(Request $request, $id)
     {
         $request->validate([
@@ -39,26 +41,26 @@ class HowWeWorksController extends Controller
             'main_description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         $mainInfo = HowWeWorksMain::findOrFail($id);
-    
-        // Eski dəyərləri saxlayın
+
         $mainInfo->type = $request->type ?: $mainInfo->type;
         $mainInfo->main_title = $request->main_title ?: $mainInfo->main_title;
         $mainInfo->main_description = $request->main_description ?: $mainInfo->main_description;
-    
+
         if ($request->hasFile('image')) {
             if ($mainInfo->image && file_exists(public_path('storage/' . $mainInfo->image))) {
                 unlink(public_path('storage/' . $mainInfo->image));
             }
             $mainInfo->image = $request->file('image')->store('images', 'public');
         }
-    
+
         $mainInfo->save();
-    
+
         return response()->json(['message' => 'Main information updated successfully!'], 200);
     }
 
+    // Delete Main Info
     public function deleteMainInfo($id)
     {
         $mainInfo = HowWeWorksMain::findOrFail($id);
@@ -72,14 +74,14 @@ class HowWeWorksController extends Controller
         return response()->json(['message' => 'Main information deleted successfully!'], 200);
     }
 
+    // Get Main Info
     public function getMainInfo()
     {
         $mainInfo = HowWeWorksMain::all();
         return response()->json($mainInfo, 200);
     }
 
-
-    //////////////////////////////////////////////////////////////////////////////////////////////
+    // Add Service Info
     public function addServiceInfo(Request $request)
     {
         $request->validate([
@@ -101,6 +103,7 @@ class HowWeWorksController extends Controller
         return response()->json(['message' => 'Service information added successfully!'], 201);
     }
 
+    // Update Service Info
     public function updateServiceInfo(Request $request, $id)
     {
         $request->validate([
@@ -108,26 +111,25 @@ class HowWeWorksController extends Controller
             'description' => 'nullable|string',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         $service = HowWeWorksService::findOrFail($id);
-    
+
         $service->title = $request->input('title', $service->title);
         $service->description = $request->input('description', $service->description);
-    
+
         if ($request->hasFile('icon')) {
             if ($service->icon && file_exists(public_path('storage/' . $service->icon))) {
                 unlink(public_path('storage/' . $service->icon));
             }
             $service->icon = $request->file('icon')->store('icons', 'public');
         }
-    
+
         $service->save();
-    
+
         return response()->json(['message' => 'Service information updated successfully!'], 200);
     }
-    
 
-
+    // Delete Service Info
     public function deleteServiceInfo($id)
     {
         $service = HowWeWorksService::findOrFail($id);
@@ -141,15 +143,10 @@ class HowWeWorksController extends Controller
         return response()->json(['message' => 'Service information deleted successfully!'], 200);
     }
 
+    // Get Service Info
     public function getServiceInfo()
     {
         $services = HowWeWorksService::all();
         return response()->json($services, 200);
     }
-
-    // public function getServiceInfoById($id)
-    // {
-    //     $service = WhoWeAreService::findOrFail($id);
-    //     return response()->json($service, 200);
-    // }
 }
