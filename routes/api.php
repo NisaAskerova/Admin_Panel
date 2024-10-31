@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
 use App\Http\Controllers\OurJournerController;
+use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\OurVisionMissionController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
@@ -20,7 +21,6 @@ Route::prefix('sliders')->group(function () {
     Route::get('/show', [SliderController::class, 'show']);
     Route::delete('/delete/{id}', [SliderController::class, 'delete']);
     Route::post('/update/{id}', [SliderController::class, 'update']);
-
 });
 
 Route::prefix('who_we_are')->group(function () {
@@ -77,4 +77,13 @@ Route::prefix('our_journey')->group(function () {
     Route::post('/store', [OurJournerController::class, 'storeAboutSecura']);
 });
 
-
+Route::prefix('our_team')->group(function () {
+    Route::post('/main_info', [OurTeamController::class, 'storeMainInfo']);
+    Route::post('/service_info', [OurTeamController::class, 'addServiceInfo']);
+    Route::get('/show_service_info', [OurTeamController::class, 'getServiceInfo']);
+    Route::get('/show_main_info', [OurTeamController::class, 'getMainInfo']);
+    Route::post('/main_info/{id}', [OurTeamController::class, 'updateMainInfo']);
+    Route::delete('/main_info/{id}', [OurTeamController::class, 'deleteMainInfo']);
+    Route::post('/service_info/{id}', [OurTeamController::class, 'updateServiceInfo']);
+    Route::delete('/service_info/{id}', [OurTeamController::class, 'deleteServiceInfo']);
+});
