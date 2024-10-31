@@ -58,3 +58,8 @@ Route::prefix('about_secura')->group(function () {
 Route::prefix('our_journey')->group(function () {
     Route::post('/store', [OurJournerController::class, 'storeAboutSecura']);
 });
+
+
+
+
+//problem tam olaraq nədi?   500 servıce error verır
