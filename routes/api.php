@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutHeroController;
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
 use App\Http\Controllers\OurJournerController;
@@ -86,4 +87,29 @@ Route::prefix('our_team')->group(function () {
     Route::delete('/main_info/{id}', [OurTeamController::class, 'deleteMainInfo']);
     Route::post('/service_info/{id}', [OurTeamController::class, 'updateServiceInfo']);
     Route::delete('/service_info/{id}', [OurTeamController::class, 'deleteServiceInfo']);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::prefix('about_hero')->group(function () {
+    Route::post('/store', [AboutHeroController::class, 'store']);
+    Route::post('/update/{id}', [AboutHeroController::class, 'update']);
+    Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
+    Route::get('/show', [AboutHeroController::class, 'show']);
 });

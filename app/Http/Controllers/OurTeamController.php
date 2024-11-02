@@ -55,7 +55,6 @@ class OurTeamController extends Controller
         return response()->json(['message' => 'Main information deleted successfully!'], 200);
     }
 
-    // Get Main Info
     public function getMainInfo()
     {
         $mainInfo = OurTeamMain::all();
@@ -84,7 +83,6 @@ class OurTeamController extends Controller
         return response()->json(['message' => 'Service information added successfully!'], 201);
     }
 
-    // Update Service Info
     public function updateServiceInfo(Request $request, $id)
     {
         $request->validate([
@@ -110,7 +108,6 @@ class OurTeamController extends Controller
         return response()->json(['message' => 'Service information updated successfully!'], 200);
     }
 
-    // Delete Service Info
     public function deleteServiceInfo($id)
     {
         $service = OurTeamService::findOrFail($id);
@@ -124,7 +121,6 @@ class OurTeamController extends Controller
         return response()->json(['message' => 'Service information deleted successfully!'], 200);
     }
 
-    // Get Service Info
     public function getServiceInfo()
     {
         $services = OurTeamService::all();

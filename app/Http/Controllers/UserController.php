@@ -47,7 +47,6 @@ class UserController extends Controller
 
 
     public function login(Request $request) {
-        // Verilerin doğrulanması
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -58,10 +57,8 @@ class UserController extends Controller
                 'success' => false,
                 'errors' => $validator->errors()
             ], 422);
-        }
-    
-        try {
-            // Giriş kontrolü
+        }  
+        try {      
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $user = Auth::user();
                 $token = $user->createToken('token')->plainTextToken;
@@ -69,7 +66,7 @@ class UserController extends Controller
                 return response()->json([
                     'token' => $token,
                     'user_id' => $user->id,
-                    'role' => $user->role, // Burada rol məlumatını əlavə edin
+                    'role' => $user->role, 
                     'success' => true
                 ]);
             } else {
