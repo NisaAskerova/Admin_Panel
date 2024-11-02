@@ -92,7 +92,7 @@ Route::prefix('our_team')->group(function () {
 
 
 
-<<<<<<< HEAD
+
 
 
 
@@ -114,6 +114,3 @@ Route::prefix('about_hero')->group(function () {
     Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
     Route::get('/show', [AboutHeroController::class, 'show']);
 });
-=======
-//problem tam olaraq nədi?   500 servıce error verır
->>>>>>> 91c6106150f273b6bb054a1def77a726429ee1da
