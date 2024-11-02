@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+=======
+
+use App\Http\Controllers\AboutHeroController;
+>>>>>>> b23a2fce2c038e46aa6339367226668f28b1fc3d
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
 use App\Http\Controllers\OurJournerController;
@@ -98,3 +103,30 @@ Route::prefix('blogs')->group(function () {
     Route::get('/main_info', [BlogController::class, 'getMainInfo']);
 });
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::prefix('about_hero')->group(function () {
+    Route::post('/store', [AboutHeroController::class, 'store']);
+    Route::post('/update/{id}', [AboutHeroController::class, 'update']);
+    Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
+    Route::get('/show', [AboutHeroController::class, 'show']);
+});
+>>>>>>> b23a2fce2c038e46aa6339367226668f28b1fc3d
