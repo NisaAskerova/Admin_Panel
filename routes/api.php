@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
 use App\Http\Controllers\AboutHeroController;
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
@@ -106,6 +109,27 @@ Route::prefix('blogs')->group(function () {
 
 });
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
 
 Route::prefix('about_hero')->group(function () {
     Route::post('/store', [AboutHeroController::class, 'store']);
@@ -113,3 +137,7 @@ Route::prefix('about_hero')->group(function () {
     Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
     Route::get('/show', [AboutHeroController::class, 'show']);
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
