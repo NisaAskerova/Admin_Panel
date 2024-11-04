@@ -13,6 +13,7 @@ class AddTypeToBlogsTable extends Migration
         });
     }
 
+
     public function down()
     {
         Schema::table('blog_mains', function (Blueprint $table) {
