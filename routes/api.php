@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-=======
 
 use App\Http\Controllers\AboutHeroController;
->>>>>>> b23a2fce2c038e46aa6339367226668f28b1fc3d
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
 use App\Http\Controllers\OurJournerController;
@@ -101,26 +98,13 @@ Route::prefix('blogs')->group(function () {
     Route::post('/main_info/{id}', [BlogController::class, 'updateMainInfo']);
     Route::delete('/main_info/{id}', [BlogController::class, 'deleteMainInfo']);
     Route::get('/main_info', [BlogController::class, 'getMainInfo']);
+    
+    Route::post('/store', [BlogController::class, 'store']);
+    Route::post('/update/{id}', [BlogController::class, 'update']);
+    Route::delete('/delete/{id}', [BlogController::class, 'delete']);
+    Route::get('/show', [BlogController::class, 'show']);
+
 });
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Route::prefix('about_hero')->group(function () {
@@ -129,4 +113,3 @@ Route::prefix('about_hero')->group(function () {
     Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
     Route::get('/show', [AboutHeroController::class, 'show']);
 });
->>>>>>> b23a2fce2c038e46aa6339367226668f28b1fc3d

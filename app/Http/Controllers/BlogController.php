@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
-use App\Models\BlogMain; // BlogMain modelini daxil edin
+use App\Models\BlogMain; 
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    // Yeni blog məlumatı saxlamaq
     public function storeMainInfo(Request $request)
     {
         $request->validate([
@@ -29,8 +30,6 @@ class BlogController extends Controller
         }
     }
 
-
-    // Mövcud blog məlumatlarını yeniləmək
     public function updateMainInfo(Request $request, $id)
     {
         $request->validate([
@@ -40,30 +39,106 @@ class BlogController extends Controller
         ]);
 
         $blog = BlogMain::findOrFail($id);
-
         $blog->type = $request->type ?: $blog->type;
         $blog->title = $request->title ?: $blog->title;
         $blog->description = $request->description ?: $blog->description;
-
         $blog->save();
 
         return response()->json(['message' => 'Main information updated successfully!'], 200);
     }
 
-    // BlogMain məlumatını silmək
     public function deleteMainInfo($id)
     {
         $blog = BlogMain::findOrFail($id);
-
         $blog->delete();
-
         return response()->json(['message' => 'Main information deleted successfully!'], 200);
     }
 
-    // Bütün blog məlumatlarını almaq
     public function getMainInfo()
     {
         $blogs = BlogMain::all();
         return response()->json($blogs, 200);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'required|image|max:2048',
+            'date_icon' => 'required|image|max:2048',
+            'button_icon' => 'required|image|max:2048',
+        ]);
+
+        try {
+            $blog = Blog::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'image' => $this->uploadFile($request->file('image'), 'images'),
+                'date_icon' => $this->uploadFile($request->file('date_icon'), 'icons'),
+                'button_icon' => $this->uploadFile($request->file('button_icon'), 'icons'),
+            ]);
+
+            return response()->json(['message' => 'Blog created successfully!', 'blog' => $blog], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to create blog.'], 500);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
+            'date_icon' => 'nullable|image|max:2048',
+            'button_icon' => 'nullable|image|max:2048',
+        ]);
+
+        $blog = Blog::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $this->deleteFile($blog->image);
+            $blog->image = $this->uploadFile($request->file('image'), 'images');
+        }
+
+        if ($request->hasFile('date_icon')) {
+            $this->deleteFile($blog->date_icon);
+            $blog->date_icon = $this->uploadFile($request->file('date_icon'), 'icons');
+        }
+
+        if ($request->hasFile('button_icon')) {
+            $this->deleteFile($blog->button_icon);
+            $blog->button_icon = $this->uploadFile($request->file('button_icon'), 'icons');
+        }
+        $blog->title = $request->title ?: $blog->title;
+        $blog->description = $request->description ?: $blog->description;
+        $blog->save();
+
+        return response()->json(['message' => 'Blog updated successfully!', 'blog' => $blog], 200);
+    }
+
+    public function uploadFile($file, $directory)
+    {
+        return $file->store($directory, 'public');
+    }
+
+    public function deleteFile($filePath)
+    {
+        if ($filePath && file_exists(public_path('storage/' . $filePath))) {
+            unlink(public_path('storage/' . $filePath));
+        }
+    }
+
+    public function show(){
+        $blogs=Blog::all();
+        return response()->json($blogs, 200);
+    }
+    public function delete($id){
+        $blog=Blog::findOrFail($id);
+        $blog->delete();
+        return response()->json(['message' => 'Information deleted successfully!'], 200);
     }
 }
