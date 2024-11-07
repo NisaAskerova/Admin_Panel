@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OurJourney extends Model
+class OurJourneyCounter extends Model
 {
-    protected $fillable = [
+    protected $fillable=[
         'title',
-        'description',
-        'icon',
+        'count',
     ];
 }

@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
 use App\Http\Controllers\AboutHeroController;
 use App\Http\Controllers\AboutSecuraController;
 use App\Http\Controllers\HowWeWorksController;
@@ -14,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoWeAreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 
 // User routes
 Route::prefix('user')->group(function () {
@@ -109,35 +107,29 @@ Route::prefix('blogs')->group(function () {
 
 });
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
-
 Route::prefix('about_hero')->group(function () {
     Route::post('/store', [AboutHeroController::class, 'store']);
     Route::post('/update/{id}', [AboutHeroController::class, 'update']);
     Route::delete('/delete/{id}', [AboutHeroController::class, 'delete']);
     Route::get('/show', [AboutHeroController::class, 'show']);
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> a1464e1387c5b24d01beda60ef50f2ef3d6673fb
+Route::prefix('categories')->group(function () {
+    Route::post('/store', [CategoryController::class, 'store']);
+    Route::post('/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
+    Route::get('/show', [CategoryController::class, 'show']);
+});
+
+
+Route::prefix('our_journey')->group(function () {
+    Route::post('/main_store', [OurJournerController::class, 'mainStore']);
+    Route::get('/show_main_info', [OurJournerController::class, 'getMainInfo']);
+    Route::post('/main_info/{id}', [OurJournerController::class, 'mainUpdate']);
+    Route::delete('/main_info/{id}', [OurJournerController::class, 'deleteMainInfo']);
+
+    Route::post('/counter_store', [OurJournerController::class, 'storeCounter']);
+    Route::get('/show_counter_info', [OurJournerController::class, 'getCounters']);
+    Route::post('/counter_update/{id}', [OurJournerController::class, 'updateCounter']);
+    Route::delete('/counter_info/{id}', [OurJournerController::class, 'deleteCounter']);
+});
