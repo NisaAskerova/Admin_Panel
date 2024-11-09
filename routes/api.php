@@ -11,8 +11,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoWeAreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TagController;
 
 // User routes
 Route::prefix('user')->group(function () {
@@ -141,4 +143,21 @@ Route::prefix('products')->group(function () {
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
     
+});
+
+Route::prefix('tags')->group(function () {
+    Route::post('/store', [TagController::class, 'store']);
+    Route::post('/update/{id}', [TagController::class, 'update']);
+    Route::delete('/delete/{id}', [TagController::class, 'delete']);
+    Route::get('/show', [TagController::class, 'show']);
+});
+
+// routes/web.php
+Route::prefix('brands')->group(function () {
+    Route::post('/store', [BrandController::class, 'store']);
+    Route::post('/update/{id}', [BrandController::class, 'update']);
+    Route::delete('/delete/{id}', [BrandController::class, 'delete']);
+    Route::get('/show', [BrandController::class, 'show']);
+    Route::get('/index/{id}', [BrandController::class, 'index']);
+
 });
