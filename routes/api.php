@@ -12,6 +12,7 @@ use App\Http\Controllers\WhoWeAreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 // User routes
 Route::prefix('user')->group(function () {
@@ -132,4 +133,12 @@ Route::prefix('our_journey')->group(function () {
     Route::get('/show_counter_info', [OurJournerController::class, 'getCounters']);
     Route::post('/counter_update/{id}', [OurJournerController::class, 'updateCounter']);
     Route::delete('/counter_info/{id}', [OurJournerController::class, 'deleteCounter']);
+});
+
+Route::prefix('products')->group(function () {
+    Route::post('/store', [ProductController::class, 'store']);
+    Route::get('/show', [ProductController::class, 'show']);
+    Route::post('/update/{id}', [ProductController::class, 'update']);
+    Route::delete('/delete/{id}', [ProductController::class, 'delete']);
+    
 });
