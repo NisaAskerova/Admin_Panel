@@ -131,6 +131,7 @@ Route::prefix('our_journey')->group(function () {
 Route::prefix('products')->group(function () {
     Route::post('/store', [ProductController::class, 'store']);
     Route::get('/show', [ProductController::class, 'show']);
+    Route::get('/show_product/{id}', [ProductController::class, 'show_product']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
     

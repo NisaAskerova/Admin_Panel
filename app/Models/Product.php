@@ -19,4 +19,22 @@ class Product extends Model
             $product->sku = 'SKU-' . strtoupper(substr($product->title, 0, 3)) . '-' . time();
         });
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_product');
+    }
+    
+    // Brendlərlə əlaqə
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class, 'brand_product');
+    }
+    
+    // Taglərlə əlaqə
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'product_tag');
+    }
+    
 }
