@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
+use App\Models\ContactUs;
 
-// User routes
 Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
 });
 
-// Slider routes
 Route::prefix('sliders')->group(function () {
     Route::post('/store', [SliderController::class, 'store']);
     Route::get('/show', [SliderController::class, 'show']);
@@ -30,7 +30,6 @@ Route::prefix('sliders')->group(function () {
     Route::post('/update/{id}', [SliderController::class, 'update']);
 });
 
-// Who We Are routes
 Route::prefix('who_we_are')->group(function () {
     Route::post('/main_info', [WhoWeAreController::class, 'storeMainInfo']);
     Route::post('/main_info/{id}', [WhoWeAreController::class, 'updateMainInfo']);
@@ -44,7 +43,6 @@ Route::prefix('who_we_are')->group(function () {
     Route::get('/show_main_info', [WhoWeAreController::class, 'getMainInfo']);
 });
 
-// How We Works routes
 Route::prefix('how_we_works')->group(function () {
     Route::post('/main_info', [HowWeWorksController::class, 'storeMainInfo']);
     Route::post('/service_info', [HowWeWorksController::class, 'addServiceInfo']);
@@ -58,7 +56,6 @@ Route::prefix('how_we_works')->group(function () {
     Route::delete('/service_info/{id}', [HowWeWorksController::class, 'deleteServiceInfo']);
 });
 
-// About Secura routes
 Route::prefix('about_secura')->group(function () {
     Route::post('/store', [AboutSecuraController::class, 'storeAboutSecura']);
     Route::get('/show', [AboutSecuraController::class, 'getAboutSecura']);
@@ -66,12 +63,10 @@ Route::prefix('about_secura')->group(function () {
     Route::delete('/delete/{id}', [AboutSecuraController::class, 'deleteAboutSecura']);
 });
 
-// Our Journey routes (duplicate removed)
 Route::prefix('our_journey')->group(function () {
     Route::post('/store', [OurJournerController::class, 'storeAboutSecura']);
 });
 
-// Our Vision and Mission routes
 Route::prefix('our_vision_mission')->group(function () {
     Route::post('/main_info', [OurVisionMissionController::class, 'storeMainInfo']);
     Route::post('/service_info', [OurVisionMissionController::class, 'addServiceInfo']);
@@ -79,12 +74,10 @@ Route::prefix('our_vision_mission')->group(function () {
     Route::get('/show_main_info', [OurVisionMissionController::class, 'getMainInfo']);
     Route::post('/main_info/{id}', [OurVisionMissionController::class, 'updateMainInfo']);
     Route::delete('/main_info/{id}', [OurVisionMissionController::class, 'deleteMainInfo']);
-
     Route::post('/service_info/{id}', [OurVisionMissionController::class, 'updateServiceInfo']);
     Route::delete('/service_info/{id}', [OurVisionMissionController::class, 'deleteServiceInfo']);
 });
 
-// Our Team routes
 Route::prefix('our_team')->group(function () {
     Route::post('/main_info', [OurTeamController::class, 'storeMainInfo']);
     Route::post('/service_info', [OurTeamController::class, 'addServiceInfo']);
@@ -96,7 +89,6 @@ Route::prefix('our_team')->group(function () {
     Route::delete('/service_info/{id}', [OurTeamController::class, 'deleteServiceInfo']);
 });
 
-// Blog routes
 Route::prefix('blogs')->group(function () {
     Route::post('/main_info', [BlogController::class, 'storeMainInfo']);
     Route::post('/main_info/{id}', [BlogController::class, 'updateMainInfo']);
@@ -130,7 +122,6 @@ Route::prefix('our_journey')->group(function () {
     Route::get('/show_main_info', [OurJournerController::class, 'getMainInfo']);
     Route::post('/main_info/{id}', [OurJournerController::class, 'mainUpdate']);
     Route::delete('/main_info/{id}', [OurJournerController::class, 'deleteMainInfo']);
-
     Route::post('/counter_store', [OurJournerController::class, 'storeCounter']);
     Route::get('/show_counter_info', [OurJournerController::class, 'getCounters']);
     Route::post('/counter_update/{id}', [OurJournerController::class, 'updateCounter']);
@@ -152,12 +143,18 @@ Route::prefix('tags')->group(function () {
     Route::get('/show', [TagController::class, 'show']);
 });
 
-// routes/web.php
 Route::prefix('brands')->group(function () {
     Route::post('/store', [BrandController::class, 'store']);
     Route::post('/update/{id}', [BrandController::class, 'update']);
     Route::delete('/delete/{id}', [BrandController::class, 'delete']);
     Route::get('/show', [BrandController::class, 'show']);
     Route::get('/index/{id}', [BrandController::class, 'index']);
-
+});
+ 
+Route::prefix('contact_us')->group(function () {
+    Route::post('/store', [ContactUsController::class, 'store']);
+    Route::post('/update/{id}', [ContactUsController::class, 'update']);
+    Route::delete('/delete/{id}', [ContactUsController::class, 'delete']);
+    Route::get('/show', [ContactUsController::class, 'show']);
+    Route::get('/index/{id}', [ContactUsController::class, 'index']);
 });
