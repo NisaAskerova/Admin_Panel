@@ -80,7 +80,11 @@ class HowWeWorksController extends Controller
         $mainInfo = HowWeWorksMain::all();
         return response()->json($mainInfo, 200);
     }
-
+    public function showMainInfo($id)
+    {
+        $mainInfo = HowWeWorksMain::findOrFail($id);
+        return response()->json($mainInfo, 200);
+    }
     // Add Service Info
     public function addServiceInfo(Request $request)
     {
@@ -148,5 +152,10 @@ class HowWeWorksController extends Controller
     {
         $services = HowWeWorksService::all();
         return response()->json($services, 200);
+    }
+    public function showServiveInfo($id)
+    {
+        $mainInfo = HowWeWorksService::findOrFail($id);
+        return response()->json($mainInfo, 200);
     }
 }

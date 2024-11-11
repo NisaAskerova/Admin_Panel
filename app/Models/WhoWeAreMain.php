@@ -8,6 +8,7 @@ class WhoWeAreMain extends Model
 {
 
     protected $fillable = [
+        'type',
         'main_title',
         'main_description',
         'image'

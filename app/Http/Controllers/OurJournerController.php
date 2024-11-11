@@ -54,6 +54,11 @@ class OurJournerController extends Controller
         $mainInfo = OurJourneyMain::all();
         return response()->json($mainInfo, 200);
     }
+    public function showMainInfo($id)
+    {
+        $mainInfo = OurJourneyMain::findOrFail($id);
+        return response()->json($mainInfo, 200);
+    }
 
     ///////////////////////////////////////////////////////////////////////
     public function storeCounter(Request $request)
@@ -98,6 +103,11 @@ class OurJournerController extends Controller
     public function getCounters()
     {
         $counters = OurJourneyCounter::all();
+        return response()->json($counters, 200);
+    }
+    public function showCounters($id)
+    {
+        $counters = OurJourneyCounter::findOrFail($id);
         return response()->json($counters, 200);
     }
 }

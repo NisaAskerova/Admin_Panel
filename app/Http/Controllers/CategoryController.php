@@ -16,8 +16,12 @@ class CategoryController extends Controller
         $category->save();
         return response()->json(['message' => 'Information added successfully!'], 201);
     }
-    public function show(){
+    public function get(){
         $categories = Category::all();
+        return response()->json($categories);
+    }
+    public function show($id){
+        $categories = Category::findOrFail($id);
         return response()->json($categories);
     }
 

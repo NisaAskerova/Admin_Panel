@@ -18,11 +18,15 @@ class TagController extends Controller
         return response()->json(['message' => 'Information added successfully!'], 201);
     }
 
-    public function show(){
+    public function get(){
         $tags = Tag::all();
         return response()->json($tags);
     }
-
+    public function show($id){
+        $tags = Tag::findOrFail($id);
+        return response()->json($tags);
+    }
+    
     public function update(Request $request, $id){
         $request->validate([
             'name' => 'required',

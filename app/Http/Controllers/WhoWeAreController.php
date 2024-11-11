@@ -11,12 +11,14 @@ class WhoWeAreController extends Controller
     public function storeMainInfo(Request $request)
     {
         $request->validate([
+            'type' => 'required|string|max:255',
             'main_title' => 'required|string|max:255',
             'main_description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $mainInfo = new WhoWeAreMain();
+        $mainInfo->type = $request->type;
         $mainInfo->main_title = $request->main_title;
         $mainInfo->main_description = $request->main_description;
 
@@ -30,31 +32,32 @@ class WhoWeAreController extends Controller
     }
 
     public function updateMainInfo(Request $request, $id)
-    {
-        $request->validate([
-            'main_title' => 'nullable|string|max:255',
-            'main_description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'type' => 'nullable|string|max:255',
+        'main_title' => 'nullable|string|max:255',
+        'main_description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $mainInfo = WhoWeAreMain::findOrFail($id);
+    $mainInfo = WhoWeAreMain::findOrFail($id);
 
-        // Eski dəyərləri saxlayın
-        $mainInfo->main_title = $request->main_title ?: $mainInfo->main_title;
-        $mainInfo->main_description = $request->main_description ?: $mainInfo->main_description;
+    $mainInfo->type = $request->type ?: $mainInfo->type;
+    $mainInfo->main_title = $request->main_title ?: $mainInfo->main_title;
+    $mainInfo->main_description = $request->main_description ?: $mainInfo->main_description;
 
-        if ($request->hasFile('image')) {
-            // Eski şəkili sil
-            if ($mainInfo->image && file_exists(public_path('storage/' . $mainInfo->image))) {
-                unlink(public_path('storage/' . $mainInfo->image));
-            }
-            $mainInfo->image = $request->file('image')->store('images', 'public');
+    if ($request->hasFile('image')) {
+        if ($mainInfo->image && file_exists(public_path('storage/' . $mainInfo->image))) {
+            unlink(public_path('storage/' . $mainInfo->image));
         }
-
-        $mainInfo->save();
-
-        return response()->json(['message' => 'Main information updated successfully!'], 200);
+        $mainInfo->image = $request->file('image')->store('images', 'public');
     }
+
+    $mainInfo->save();
+
+    return response()->json(['message' => 'Main information updated successfully!'], 200);
+}
+
 
     public function deleteMainInfo($id)
     {
@@ -69,13 +72,17 @@ class WhoWeAreController extends Controller
         return response()->json(['message' => 'Main information deleted successfully!'], 200);
     }
 
-    public function getMainInfo()
+    public function showMainInfo()
     {
         $mainInfo = WhoWeAreMain::all();
         return response()->json($mainInfo, 200);
     }
-
-    
+    public function getMainInfo($id)
+    {
+        $service = WhoWeAreMain::findOrFail($id);
+        return response()->json($service, 200);
+    }
+    /////////////////////////////////////////////////////////////////////////////////
     public function addServiceInfo(Request $request)
     {
         $request->validate([
@@ -99,7 +106,6 @@ class WhoWeAreController extends Controller
         return response()->json(['message' => 'Service information added successfully!'], 201);
     }
 
-    // Service Information - Update
     public function updateServiceInfo(Request $request, $id)
     {
         $request->validate([

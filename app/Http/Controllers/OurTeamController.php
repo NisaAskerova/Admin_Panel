@@ -60,6 +60,11 @@ class OurTeamController extends Controller
         $mainInfo = OurTeamMain::all();
         return response()->json($mainInfo, 200);
     }
+    public function showMainInfo($id)
+    {
+        $mainInfo = OurTeamMain::findOrFail($id);
+        return response()->json($mainInfo, 200);
+    }
 
     // Add Service Info
     public function addServiceInfo(Request $request)
@@ -124,6 +129,11 @@ class OurTeamController extends Controller
     public function getServiceInfo()
     {
         $services = OurTeamService::all();
+        return response()->json($services, 200);
+    }
+    public function showServiceInfo($id)
+    {
+        $services = OurTeamService::findOrFail($id);
         return response()->json($services, 200);
     }
 }

@@ -79,7 +79,12 @@ class OurVisionMissionController extends Controller
         $mainInfo = OurVisionMain::all();
         return response()->json($mainInfo, 200);
     }
-
+    public function showMainInfo($id)
+    {
+        $mainInfo = OurVisionMain::findOrFail($id);
+        return response()->json($mainInfo, 200);
+    }
+    
     // Add Service Info
     public function addServiceInfo(Request $request)
     {
@@ -146,6 +151,11 @@ class OurVisionMissionController extends Controller
     public function getServiceInfo()
     {
         $services = OurVisionService::all();
+        return response()->json($services, 200);
+    }
+    public function showServiceInfo($id)
+    {
+        $services = OurVisionService::findOrFail($id);
         return response()->json($services, 200);
     }
 }

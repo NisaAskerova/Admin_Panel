@@ -35,12 +35,17 @@ class SliderController extends Controller
         return response()->json(['message' => 'Slider added successfully!', 'slider' => $slider], 201);
     }
 
-    public function show()
+    public function show($id)
+    {
+        $sliders = Slider::findOrFail($id);
+        return response()->json($sliders, 200);
+    }
+    public function get()
     {
         $sliders = Slider::all();
         return response()->json($sliders, 200);
     }
-
+    
     public function delete($id)
     {
         $slider = Slider::findOrFail($id);

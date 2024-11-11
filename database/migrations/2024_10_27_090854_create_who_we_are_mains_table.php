@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('who_we_are_mains', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->string('main_title');
             $table->text('main_description');
             $table->string('image')->nullable();

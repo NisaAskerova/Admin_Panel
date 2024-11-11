@@ -40,7 +40,11 @@ class AboutSecuraController extends Controller
         $mainInfo = AboutSecura::all();
         return response()->json($mainInfo, 200);
     }
-
+    public function showAboutSecura($id)
+    {
+        $mainInfo = AboutSecura::findOrFail($id);
+        return response()->json($mainInfo, 200);
+    }
     public function updateAboutSecura(Request $request, $id)
     {
         $request->validate([
