@@ -10,9 +10,11 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'price', 'has_stock', 'stock_quantity', 'image'
+        'title', 'description', 'price', 'has_stock', 'stock_quantity', 'image', 'images'
     ];
-
+    protected $casts = [
+        'images' => 'array', // Cast 'images' as an array
+    ];
     protected static function booted()
     {
         static::creating(function ($product) {

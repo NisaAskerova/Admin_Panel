@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('image');
+            $table->json('images')->nullable();
             $table->decimal('price', 8, 2);
             $table->boolean('has_stock')->default(false);
             $table->integer('stock_quantity')->default(0);
