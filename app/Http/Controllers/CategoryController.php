@@ -49,4 +49,17 @@ class CategoryController extends Controller
             return response()->json(['message' => 'Category not found!'], 404);
         }
     }
+
+
+    public function showWithProducts($id)
+{
+    $category = Category::with('products')->find($id); // Use eager loading to load products
+    if ($category) {
+        return response()->json($category); // This will include the products in the response
+    } else {
+        return response()->json(['message' => 'Category not found!'], 404);
+    }
+}
+
+    
 }

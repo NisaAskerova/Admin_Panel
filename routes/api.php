@@ -116,6 +116,7 @@ Route::prefix('categories')->group(function () {
     Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
     Route::get('/get', [CategoryController::class, 'get']);
     Route::get('/show/{id}', [CategoryController::class, 'show']);
+    Route::get('/{id}/products', [CategoryController::class, 'showWithProducts']);
 });
 
 
@@ -146,7 +147,9 @@ Route::prefix('tags')->group(function () {
     Route::delete('/delete/{id}', [TagController::class, 'delete']);
     Route::get('/get', [TagController::class, 'get']);
     Route::get('/show/{id}', [TagController::class, 'show']);
+    Route::get('/{id}/products', [TagController::class, 'getProductsByTag']);
 });
+
 
 Route::prefix('brands')->group(function () {
     Route::post('/store', [BrandController::class, 'store']);

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
@@ -6,7 +7,8 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
         ]);
@@ -18,16 +20,31 @@ class TagController extends Controller
         return response()->json(['message' => 'Information added successfully!'], 201);
     }
 
-    public function get(){
+    public function get()
+    {
         $tags = Tag::all();
         return response()->json($tags);
     }
-    public function show($id){
-        $tags = Tag::findOrFail($id);
-        return response()->json($tags);
+
+    public function show($id)
+    {
+        $tag = Tag::findOrFail($id);
+        return response()->json($tag);
     }
-    
-    public function update(Request $request, $id){
+
+    public function getProductsByTag($id)
+    {
+        $tag = Tag::with('products')->find($id);
+
+        if ($tag) {
+            return response()->json($tag->products);
+        } else {
+            return response()->json(['message' => 'Tag not found!'], 404);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
         ]);
@@ -42,7 +59,8 @@ class TagController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $tag = Tag::find($id);
         if ($tag) {
             $tag->delete();
@@ -51,5 +69,4 @@ class TagController extends Controller
             return response()->json(['message' => 'Tag not found!'], 404);
         }
     }
-    
 }
