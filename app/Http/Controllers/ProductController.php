@@ -71,12 +71,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-    
+        
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
         }
-    
-        // Validate request
+        
+        // Validate request with "sometimes" for optional fields
         $validatedData = $request->validate([
             'title' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
@@ -92,48 +92,66 @@ class ProductController extends Controller
             'tag_ids' => 'sometimes|array',
             'tag_ids.*' => 'exists:tags,id',
         ]);
-    
-        // Update fields conditionally
-        if ($request->has('title')) {
+        
+        // Conditional update for each field that is passed in the request
+        if ($request->has('title') && $request->title !== $product->title) {
             $product->title = $validatedData['title'];
         }
-        if ($request->has('description')) {
+    
+        if ($request->has('description') && $request->description !== $product->description) {
             $product->description = $validatedData['description'];
         }
-        if ($request->has('price')) {
+    
+        if ($request->has('price') && $request->price !== $product->price) {
             $product->price = $validatedData['price'];
         }
-        if ($request->has('has_stock')) {
+    
+        if ($request->has('has_stock') && $request->has_stock !== $product->has_stock) {
             $product->has_stock = $validatedData['has_stock'];
         }
-        if ($request->has('stock_quantity')) {
+    
+        if ($request->has('stock_quantity') && $request->stock_quantity !== $product->stock_quantity) {
             $product->stock_quantity = $validatedData['stock_quantity'];
         }
     
-        // Handle image uploads
+        // Handle image uploads only if provided
         if ($request->hasFile('image')) {
+            // Delete the old image if exists before uploading the new one
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
             $product->image = $request->file('image')->store('images/products', 'public');
         }
     
         if ($request->hasFile('images')) {
+            // Handle multiple images
             $images = [];
             foreach ($request->file('images') as $image) {
                 $images[] = $image->store('images/products', 'public');
             }
+            // Optionally delete old images if necessary
+            if ($product->images) {
+                foreach ($product->images as $oldImage) {
+                    Storage::disk('public')->delete($oldImage);
+                }
+            }
             $product->images = $images;
         }
     
-        // Update categories, brands, and tags
+        // Update the relationships (categories, brands, and tags) if provided
         if ($request->has('category_ids')) {
             $product->categories()->sync($validatedData['category_ids']);
         }
+    
         if ($request->has('brand_ids')) {
             $product->brands()->sync($validatedData['brand_ids']);
         }
+    
         if ($request->has('tag_ids')) {
             $product->tags()->sync($validatedData['tag_ids']);
         }
     
+        // Save the product with updated fields
         $product->save();
     
         return response()->json(['message' => 'Product updated successfully'], 200);
