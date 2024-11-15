@@ -15,6 +15,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TagController;
 use App\Models\ContactUs;
 
@@ -157,6 +158,7 @@ Route::prefix('brands')->group(function () {
     Route::delete('/delete/{id}', [BrandController::class, 'delete']);
     Route::get('/show', [BrandController::class, 'show']);
     Route::get('/index/{id}', [BrandController::class, 'index']);
+    Route::get('/{id}/products', [BrandController::class, 'getProductsByBrand']);
 });
 
 Route::prefix('contact_us')->group(function () {
@@ -166,3 +168,5 @@ Route::prefix('contact_us')->group(function () {
     Route::get('/show', [ContactUsController::class, 'show']);
     Route::get('/index/{id}', [ContactUsController::class, 'index']);
 });
+
+

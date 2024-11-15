@@ -7,24 +7,27 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
         ]);
-        
+
         $brand = new Brand();
         $brand->name = $request->name;
         $brand->save();
-        
+
         return response()->json(['message' => 'Brand added successfully!'], 201);
     }
 
-    public function show() {
+    public function show()
+    {
         $brands = Brand::all();
         return response()->json($brands);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
         ]);
@@ -39,7 +42,8 @@ class BrandController extends Controller
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $brand = Brand::find($id);
         if ($brand) {
             $brand->delete();
@@ -48,14 +52,23 @@ class BrandController extends Controller
             return response()->json(['message' => 'Brand not found!'], 404);
         }
     }
-    // app/Http/Controllers/BrandController.php
-public function index($id) {
-    $brand = Brand::find($id);
-    if ($brand) {
-        return response()->json($brand);
-    } else {
-        return response()->json(['message' => 'Brand not found!'], 404);
+    public function index($id)
+    {
+        $brand = Brand::find($id);
+        if ($brand) {
+            return response()->json($brand);
+        } else {
+            return response()->json(['message' => 'Brand not found!'], 404);
+        }
     }
-}
+    public function getProductsByBrand($id)
+    {
+        $brand = Brand::with('products')->find($id);
 
+        if ($brand) {
+            return response()->json($brand->products);
+        } else {
+            return response()->json(['message' => 'brand not found!'], 404);
+        }
+    }
 }
