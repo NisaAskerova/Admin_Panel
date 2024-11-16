@@ -13,5 +13,8 @@ class Blog extends Model
         'image',
         'date_icon',
         'button_icon', 
+        'detail_description',
+        'detail_text',
+        'detail_short_description',
     ];
 }

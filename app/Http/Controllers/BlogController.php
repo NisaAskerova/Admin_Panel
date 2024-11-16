@@ -67,6 +67,9 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'detail_description' => 'required|string',
+            'detail_short_description' => 'required|string',
+            'detail_text' => 'required|string',
             'image' => 'required|image|max:2048',
             'date_icon' => 'required|image|max:2048',
             'button_icon' => 'required|image|max:2048',
@@ -75,6 +78,9 @@ class BlogController extends Controller
         try {
             $blog = Blog::create([
                 'title' => $request->title,
+                'detail_description' => $request->detail_description,
+                'detail_short_description' => $request->detail_short_description,
+                'detail_text' => $request->detail_text,
                 'description' => $request->description,
                 'image' => $this->uploadFile($request->file('image'), 'images'),
                 'date_icon' => $this->uploadFile($request->file('date_icon'), 'icons'),
@@ -92,6 +98,9 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'detail_description' => 'nullable|string',
+            'detail_short_description' => 'nullable|string',
+            'detail_text' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'date_icon' => 'nullable|image|max:2048',
             'button_icon' => 'nullable|image|max:2048',
@@ -113,8 +122,12 @@ class BlogController extends Controller
             $this->deleteFile($blog->button_icon);
             $blog->button_icon = $this->uploadFile($request->file('button_icon'), 'icons');
         }
+        
         $blog->title = $request->title ?: $blog->title;
         $blog->description = $request->description ?: $blog->description;
+        $blog->detail_short_description = $request->detail_short_description ?: $blog->detail_short_description;
+        $blog->detail_description = $request->detail_description ?: $blog->detail_description;
+        $blog->detail_text = $request->detail_text ?: $blog->detail_text;
         $blog->save();
 
         return response()->json(['message' => 'Blog updated successfully!', 'blog' => $blog], 200);
@@ -133,7 +146,12 @@ class BlogController extends Controller
     }
 
     public function show(){
-        $blogs=Blog::all();
+        // Blogları yaradılma tarixinə görə son tarixdən əvvəlki sıralama ilə alırıq
+        $blogs = Blog::orderByDesc('id')->get();
+        return response()->json($blogs, 200);
+    }
+    public function showBlogId($id){
+        $blogs = Blog::findOrFail($id);
         return response()->json($blogs, 200);
     }
     public function delete($id){

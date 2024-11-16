@@ -97,6 +97,7 @@ Route::prefix('blogs')->group(function () {
     Route::post('/main_info/{id}', [BlogController::class, 'updateMainInfo']);
     Route::delete('/main_info/{id}', [BlogController::class, 'deleteMainInfo']);
     Route::get('/main_info', [BlogController::class, 'getMainInfo']);
+    Route::get('/get_blog/{id}', [BlogController::class, 'showBlogId']);
 
     Route::post('/store', [BlogController::class, 'store']);
     Route::post('/update/{id}', [BlogController::class, 'update']);
