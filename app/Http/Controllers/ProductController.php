@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +16,6 @@ class ProductController extends Controller
         return response()->json($products, 200);
     }
     
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -28,7 +29,7 @@ class ProductController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif', // Validate each image in the array
             'category_ids' => 'required|array',
             'category_ids.*' => 'exists:categories,id',
-            'brand_ids' => 'required|array',
+            'brand_ids' => 'required|array|size:1', // Expect only one brand
             'brand_ids.*' => 'exists:brands,id',
             'tag_ids' => 'required|array',
             'tag_ids.*' => 'exists:tags,id',
@@ -57,25 +58,25 @@ class ProductController extends Controller
     
         $product->save();
     
-        // Attach categories, brands, and tags
+        // Attach only the first brand (ensure the brand_ids array has only one value)
+        $product->brands()->attach($validated['brand_ids'][0]);  // Use only the first brand id
+    
+        // Attach categories and tags
         $product->categories()->attach($validated['category_ids']);
-        $product->brands()->attach($validated['brand_ids']);
         $product->tags()->attach($validated['tag_ids']);
     
         return response()->json(['message' => 'Product created successfully'], 201);
     }
     
-
-    
     
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        
+    
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
         }
-        
+    
         // Validate request with "sometimes" for optional fields
         $validatedData = $request->validate([
             'title' => 'sometimes|string|max:255',
@@ -87,12 +88,12 @@ class ProductController extends Controller
             'images' => 'nullable|array',
             'category_ids' => 'sometimes|array',
             'category_ids.*' => 'exists:categories,id',
-            'brand_ids' => 'sometimes|array',
+            'brand_ids' => 'required|array|size:1', // Expect only one brand
             'brand_ids.*' => 'exists:brands,id',
             'tag_ids' => 'sometimes|array',
             'tag_ids.*' => 'exists:tags,id',
         ]);
-        
+    
         // Conditional update for each field that is passed in the request
         if ($request->has('title') && $request->title !== $product->title) {
             $product->title = $validatedData['title'];
@@ -143,9 +144,8 @@ class ProductController extends Controller
             $product->categories()->sync($validatedData['category_ids']);
         }
     
-        if ($request->has('brand_ids')) {
-            $product->brands()->sync($validatedData['brand_ids']);
-        }
+        // Attach only the first brand (ensure the brand_ids array has only one value)
+        $product->brands()->sync([$validatedData['brand_ids'][0]]); // Sync only the first brand
     
         if ($request->has('tag_ids')) {
             $product->tags()->sync($validatedData['tag_ids']);
@@ -156,6 +156,7 @@ class ProductController extends Controller
     
         return response()->json(['message' => 'Product updated successfully'], 200);
     }
+    
     
 
 public function delete($id)
@@ -191,4 +192,62 @@ public function show_product($id)
     return response()->json($product, 200);
 }
 
+public function filter(Request $request)
+{
+    // Filtrlər üçün istifadə ediləcək dəyərləri götürürük
+    $categoryIds = $request->input('category_ids', []);
+    $brandIds = $request->input('brand_ids', []);
+    $tagIds = $request->input('tag_ids', []);
+    $minPrice = $request->input('min_price', 0);
+    $maxPrice = $request->input('max_price', 1000000); // Maksimum qiymət
+
+    $query = Product::with(['categories', 'brands', 'tags']);
+
+    // Filteri Category-ə görə tətbiq edirik
+    if (!empty($categoryIds)) {
+        $query->whereHas('categories', function ($query) use ($categoryIds) {
+            $query->whereIn('id', $categoryIds);
+        });
+    }
+
+    // Filteri Brand-ə görə tətbiq edirik
+    if (!empty($brandIds)) {
+        $query->whereHas('brands', function ($query) use ($brandIds) {
+            $query->whereIn('id', $brandIds);
+        });
+    }
+
+    // Filteri Tag-ə görə tətbiq edirik
+    if (!empty($tagIds)) {
+        $query->whereHas('tags', function ($query) use ($tagIds) {
+            $query->whereIn('id', $tagIds);
+        });
+    }
+
+    // Filteri Price-ə görə tətbiq edirik
+    if ($minPrice || $maxPrice) {
+        $query->whereBetween('price', [$minPrice, $maxPrice]);
+    }
+
+    // Filtrlənmiş məhsulları alırıq
+    $products = $query->get();
+
+    // Dinamik Category və Brand Count-ları
+    $categories = Category::withCount('products')->get();
+    $brands = Brand::withCount('products')->get();
+
+    return response()->json([
+        'products' => $products,
+        'categories' => $categories,
+        'brands' => $brands
+    ], 200);
 }
+
+
+
+
+
+}
+
+
+

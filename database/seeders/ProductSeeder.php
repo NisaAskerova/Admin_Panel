@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 10,
                 'category_ids' => [3],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [1],
             ],
             [
@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1],
             ],
             [
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [4],
+                'brand_ids' => 4,
                 'tag_ids' => [3],
             ],
             [
@@ -80,7 +80,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1],
             ],
             [
@@ -99,7 +99,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [2],
             ],
             [
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [6],
+                'brand_ids' => 6,
                 'tag_ids' => [1, 2],
             ],
             [
@@ -135,7 +135,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [1, 2],
             ],
             [
@@ -153,7 +153,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [4],
+                'brand_ids' => 4,
                 'tag_ids' => [1, 3],
             ],
             [
@@ -171,7 +171,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1, 3],
             ],
             [
@@ -189,7 +189,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [5],
+                'brand_ids' => 5,
                 'tag_ids' => [3, 4],
             ],
             [
@@ -207,7 +207,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1, 5],
             ],
             [
@@ -225,7 +225,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3],
-                'brand_ids' => [5],
+                'brand_ids' => 5,
                 'tag_ids' => [1, 5],
             ],
             [
@@ -243,7 +243,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [3],
             ],
             [
@@ -261,7 +261,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [3, 5],
             ],
             [
@@ -279,7 +279,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1, 3],
             ],
             [
@@ -297,7 +297,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [1, 3],
             ],
             [
@@ -315,7 +315,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [4],
+                'brand_ids' => 4,
                 'tag_ids' => [3],
             ],
             [
@@ -333,7 +333,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [4],
+                'brand_ids' => 4,
                 'tag_ids' => [3,5],
             ],
             [
@@ -351,7 +351,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [5],
+                'brand_ids' => 5,
                 'tag_ids' => [2],
             ],
             [
@@ -369,7 +369,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [2,5],
             ],
             [
@@ -387,7 +387,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [2],
+                'brand_ids' => 2,
                 'tag_ids' => [5],
             ],
             [
@@ -405,7 +405,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [4],
+                'brand_ids' => 4,
                 'tag_ids' => [3,4],
             ],
             [
@@ -423,7 +423,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [5],
+                'brand_ids' => 5,
                 'tag_ids' => [4],
             ],
             [
@@ -441,7 +441,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [6],
+                'brand_ids' => 6,
                 'tag_ids' => [4],
             ],
             [
@@ -459,7 +459,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [7],
+                'brand_ids' => 7,
                 'tag_ids' => [1,3],
             ],
             [
@@ -477,7 +477,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [1],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [3,4],
             ],
             [
@@ -495,7 +495,7 @@ class ProductSeeder extends Seeder
                 'has_stock' => true,
                 'stock_quantity' => 5,
                 'category_ids' => [3,4],
-                'brand_ids' => [1],
+                'brand_ids' => 1,
                 'tag_ids' => [3,4],
             ],
             
