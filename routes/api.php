@@ -15,15 +15,16 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewRatingController;
 use App\Http\Controllers\TagController;
-use App\Models\ContactUs;
 
 Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
 });
-
+Route::group(['middleware'=>['auth:sanctum']], function(){
+Route::get('/me', [UserController::class, 'me']);
+});
 Route::prefix('sliders')->group(function () {
     Route::post('/store', [SliderController::class, 'store']);
     Route::get('/show/{id}', [SliderController::class, 'show']);
@@ -142,7 +143,10 @@ Route::prefix('products')->group(function () {
     Route::get('/show_product/{id}', [ProductController::class, 'show_product']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
+    Route::post('{productId}/submit-review', [ProductController::class, 'submitReview']);
+    Route::get('/reviews/{productId}', [ProductController::class, 'getReviews']);
 });
+
 
 Route::prefix('tags')->group(function () {
     Route::post('/store', [TagController::class, 'store']);
@@ -172,3 +176,9 @@ Route::prefix('contact_us')->group(function () {
 });
 
 
+
+Route::prefix('reviews')->group(function () {
+Route::get('{productId}', [ReviewRatingController::class, 'index']);
+Route::post('{productId}/store', [ReviewRatingController::class, 'store'])->middleware('auth:sanctum');
+
+});

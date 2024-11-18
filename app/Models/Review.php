@@ -9,7 +9,6 @@ class Review extends Model
 {
     use HasFactory;
 
-    // Əlavə edilən sahələr
     protected $fillable = [
         'user_id',  
         'product_id',  
@@ -25,5 +24,9 @@ class Review extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function rating()
+    {
+        return $this->hasOne(Rating::class, 'product_id', 'product_id');  // Assuming Rating is related by product_id
     }
 }
