@@ -1,29 +1,37 @@
 <?php
+
 namespace App\Http;
 
-use App\Http\Middleware\Cors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
     protected $middleware = [
-        // Global middleware
+        \Fruitcake\Cors\HandleCors::class,
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
     ];
 
     protected $middlewareGroups = [
         'web' => [
-            // Web middleware
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-         Cors::class, // CORS middleware burada
+            \App\Http\Middleware\Cors::class,
         ],
     ];
 
     protected $routeMiddleware = [
-        // Route middleware
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth:sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     ];
+
+    
 }

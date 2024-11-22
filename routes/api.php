@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutHeroController;
 use App\Http\Controllers\AboutSecuraController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HowWeWorksController;
 use App\Http\Controllers\OurJournerController;
 use App\Http\Controllers\OurTeamController;
@@ -14,17 +15,21 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewRatingController;
 use App\Http\Controllers\TagController;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
 });
-Route::group(['middleware'=>['auth:sanctum']], function(){
-Route::get('/me', [UserController::class, 'me']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', [UserController::class, 'me']);  // 'auth:sanctum' middleware ilə qorunan route
 });
+
 Route::prefix('sliders')->group(function () {
     Route::post('/store', [SliderController::class, 'store']);
     Route::get('/show/{id}', [SliderController::class, 'show']);
@@ -178,7 +183,24 @@ Route::prefix('contact_us')->group(function () {
 
 
 Route::prefix('reviews')->group(function () {
-Route::get('{productId}', [ReviewRatingController::class, 'index']);
-Route::post('{productId}/store', [ReviewRatingController::class, 'store'])->middleware('auth:sanctum');
+    Route::get('{productId}', [ReviewRatingController::class, 'index']);
+    Route::post('{productId}/store', [ReviewRatingController::class, 'store'])->middleware('auth:sanctum');
+});
 
+
+Route::prefix('basket')->group(function () {
+    Route::get('/index', [BasketController::class, 'show']);
+    Route::post('/store', [BasketController::class, 'addProduct']);
+    Route::post('/updateQuantity/{action}', [BasketController::class, 'updateQuantity']);
+});
+
+
+Route::prefix('order')->group(function () {
+    Route::post('/create', [OrderController::class, 'createOrder']);
+    Route::get('/details/{order_id}', [OrderController::class, 'getOrderDetails']);
+});
+
+Route::prefix('payment')->group(function () {
+    Route::post('/create', [PaymentController::class, 'createPayment']);
+    Route::get('/{order_id}', [PaymentController::class, 'getPayment']);
 });

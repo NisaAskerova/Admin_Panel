@@ -2,7 +2,7 @@
 
 return [
 
-    'paths' => ['api/*'], // API yollarınızı burada göstərin
+    'paths' => ['api/*','basket/*'], // API yollarınızı burada göstərin
 
     'allowed_methods' => ['*'], // İstədiyiniz HTTP metodlarını burada göstərin (GET, POST, PUT, DELETE, etc.)
 

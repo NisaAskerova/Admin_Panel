@@ -25,4 +25,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, 'author_id');
     }
+    
+       public function baskets()
+    {
+        return $this->hasMany(Basket::class, 'user_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'user_id');
+    }
+    // User modelində
+public function basket()
+{
+    return $this->hasOne(Basket::class);
+}
+
 }

@@ -56,5 +56,15 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
+    public function isInStock(): bool
+    {
+        return $this->has_stock && $this->stock_quantity > 0;
+    }
+    public function baskets()
+    {
+        return $this->belongsToMany(Basket::class, 'basket_products')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
 }
 
