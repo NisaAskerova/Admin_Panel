@@ -17,15 +17,16 @@ class Basket extends Model
         return $this->belongsTo(User::class);
     }
     
-
-    // Product ilə əlaqə (Bir səbətdə çox məhsul ola bilər)
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'basket_products')
-                    ->withPivot('quantity')
-                    ->withTimestamps();
+        return $this->belongsToMany(Product::class, 'basket_products')->withPivot('quantity');
     }
-
+    
+    public function getCartCount()
+{
+    // Bu metod səbətdəki ümumi məhsul sayını qaytarır
+    return $this->products()->sum('pivot.quantity');
+}
   
 
 }

@@ -41,9 +41,10 @@ class User extends Authenticatable
         return $this->hasMany(Payment::class, 'user_id');
     }
     // User modelində
-public function basket()
-{
-    return $this->hasOne(Basket::class);
-}
+    public function basket()
+    {
+        return $this->hasOne(Basket::class);
+    }
+    
 
 }

@@ -190,8 +190,11 @@ Route::prefix('reviews')->group(function () {
 
 Route::prefix('basket')->group(function () {
     Route::get('/index', [BasketController::class, 'show']);
-    Route::post('/store', [BasketController::class, 'addProduct']);
+    Route::get('/quantity', [BasketController::class, 'basketQuantity']);
+    Route::post('/store', [BasketController::class, 'store']);
     Route::post('/updateQuantity/{action}', [BasketController::class, 'updateQuantity']);
+Route::delete('{basketId}/product/{productId}', [BasketController::class, 'removeProductFromBasket']);
+
 });
 
 
