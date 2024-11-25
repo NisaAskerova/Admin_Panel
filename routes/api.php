@@ -27,7 +27,8 @@ Route::prefix('user')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
 });
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/me', [UserController::class, 'me']);  // 'auth:sanctum' middleware ilə qorunan route
+    Route::get('/me', [UserController::class, 'me']); 
+    Route::get('/logout', [UserController::class, 'logout']); 
 });
 
 Route::prefix('sliders')->group(function () {
@@ -191,6 +192,7 @@ Route::prefix('reviews')->group(function () {
 Route::prefix('basket')->group(function () {
     Route::get('/index', [BasketController::class, 'show']);
     Route::get('/quantity', [BasketController::class, 'basketQuantity']);
+    Route::get('/total', [BasketController::class, 'calculateTotal']);
     Route::post('/store', [BasketController::class, 'store']);
     Route::post('/updateQuantity/{action}', [BasketController::class, 'updateQuantity']);
 Route::delete('{basketId}/product/{productId}', [BasketController::class, 'removeProductFromBasket']);

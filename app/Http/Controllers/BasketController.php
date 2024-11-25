@@ -13,34 +13,55 @@ class BasketController extends Controller
     public function __construct()
     {
         // Only authenticated users with a valid API token can access these actions
-        $this->middleware('auth:sanctum')->only(['show', 'store', 'updateQuantity', 'basketQuantity', 'removeProductFromBasket']);
+        $this->middleware('auth:sanctum')
+            ->only(
+                [
+                    'show',
+                    'store',
+                    'updateQuantity',
+                    'basketQuantity',
+                    'removeProductFromBasket',
+                    'calculateTotal'
+                ]
+            );
     }
 
     // Display products in the basket
     public function show()
-    {
-        $user = auth()->user();
-    
-        if (!$user || !$user->basket) {
-            return response()->json(['error' => 'User does not have a basket'], 404);
-        }
-    
-        // Fetch products in the user's basket
-        $products = BasketProduct::with('product:id,title,price,image,stock_quantity')
-            ->where('basket_id', $user->basket->id)
-            ->get()
-            ->map(function ($basketProduct) {
-                $basketProduct->quantity = $basketProduct->quantity; // Directly access the quantity from BasketProduct
-                return $basketProduct;
-            });
-        
-        return response()->json($products, 200);
+{
+    $user = auth()->user();
+
+    if (!$user || !$user->basket) {
+        return response()->json(['error' => 'User does not have a basket'], 404);
     }
-    
+
+    // Fetch products in the user's basket
+    $products = BasketProduct::with('product:id,title,price,image,stock_quantity')
+        ->where('basket_id', $user->basket->id)
+        ->get()
+        ->map(function ($basketProduct) {
+            $basketProduct->quantity = $basketProduct->quantity; // Directly access the quantity from BasketProduct
+            return $basketProduct;
+        });
+
+    // Calculate total quantity and total price
+    $totalQuantity = $products->sum('quantity');  // Sum the quantities of the products
+    $totalPrice = $products->sum(function ($basketProduct) {
+        return $basketProduct->quantity * $basketProduct->product->price; // Calculate total price by multiplying quantity and product price
+    });
+
+    // Return the products along with the total quantity and total price
+    return response()->json([
+        'products' => $products,
+        'total_quantity' => $totalQuantity,
+        'total_price' => $totalPrice
+    ], 200);
+}
+
+
     // Add product to the basket
     public function store(Request $request)
     {
-
         $user = auth()->user();
 
         if (!$user->basket) {
@@ -49,49 +70,19 @@ class BasketController extends Controller
 
         $basketId = $user->basket->id;
         $product = Product::find($request->product_id);
-        if (!$product) {
-            return response()->json([
-                'message' => "Product not found",
-                'success' => false
-            ], 404);
+
+        if (!$product || !$product->has_stock) {
+            return response()->json(['message' => 'Product not available'], 404);
         }
 
-        // Check if the product is in stock
-        if (!$product->has_stock) {
-            return response()->json([
-                'message' => "Product out of stock",
-                'success' => false
-            ], 400);
-        }
-
-        // Find the product in the user's basket
         $basketProduct = BasketProduct::where('basket_id', $basketId)
             ->where('product_id', $product->id)
             ->first();
 
-        // Check if the product is already in the basket
         if ($basketProduct) {
-            // Check if there's enough stock to increase the quantity
-            if ($basketProduct->quantity + $request->quantity > $product->stock_quantity) {
-                return response()->json([
-                    'message' => "Not enough stock_quantity available",
-                    'success' => false
-                ], 400);
-            }
-
-            // Update the quantity in the basket
             $basketProduct->quantity += $request->quantity;
             $basketProduct->save();
         } else {
-            // If the product is not in the basket, add it
-            if ($request->quantity > $product->stock_quantity) {
-                return response()->json([
-                    'message' => "Not enough stock_quantity available",
-                    'success' => false
-                ], 400);
-            }
-
-            // Add the new product to the basket
             BasketProduct::create([
                 'basket_id' => $basketId,
                 'product_id' => $product->id,
@@ -99,20 +90,7 @@ class BasketController extends Controller
             ]);
         }
 
-        // Update the product stock_quantity
-        $product->stock_quantity -= $request->quantity;
-        $product->save();
-
-        // If product stock_quantity is zero, mark it as out of stock_quantity
-        if ($product->stock_quantity == 0) {
-            $product->hasStock = false;
-            $product->save();
-        }
-
-        return response()->json([
-            'message' => "Product added to basket",
-            'success' => true
-        ], 200);
+        return response()->json(['message' => 'Product added successfully'], 200);
     }
 
 
@@ -120,7 +98,7 @@ class BasketController extends Controller
     // Update quantity in the basket
     public function updateQuantity(Request $request, $action)
     {
-        $user = auth()->user();
+        $user = auth()->user(); // Get the logged-in user
         $basketId = $user->basket->id;
 
         // Find the product in the basket
@@ -134,42 +112,20 @@ class BasketController extends Controller
             ], 404);
         }
 
-        $product = Product::find($request->product_id);
-
-        if (!$product) {
-            return response()->json([
-                'error' => 'Product not found'
-            ], 404);
-        }
-
         if ($action === 'increase') {
-            if ($product->stock_quantity < 1) {
-                return response()->json([
-                    'error' => 'No more stock available'
-                ], 400);
-            }
-
             $basketProduct->quantity += 1;
-            $product->stock_quantity -= 1;
-        } elseif ($action === 'decrease') {
-            if ($basketProduct->quantity <= 1) {
-                return response()->json([
-                    'error' => 'Cannot reduce below 1'
-                ], 400);
-            }
-
+        } elseif ($action === 'decrease' && $basketProduct->quantity > 1) {
             $basketProduct->quantity -= 1;
-            $product->stock_quantity += 1;
+        } else {
+            return response()->json(['error' => 'Invalid action or insufficient quantity'], 400);
         }
 
         $basketProduct->save();
-        $product->save();
 
-        return response()->json([
-            'message' => 'Quantity updated successfully',
-            'success' => true
-        ], 200);
+        return response()->json(['success' => 'Quantity updated successfully'], 200);
     }
+
+
     public function basketQuantity()
     {
         $user = auth()->user();
@@ -191,25 +147,62 @@ class BasketController extends Controller
         return response()->json(['total_items' => $productCount], 200);
     }
 
-    public function removeProductFromBasket($basketId, $productId)
+    public function removeProductFromBasket(Request $request, $basketId, $productId)
     {
-        // Log the inputs to check if they are correct
-        \Log::info("Attempting to remove product from basket. Basket ID: {$basketId}, Product ID: {$productId}");
-        
-        // Find the basket product entry by its ID
+        $user = auth()->user();
         $basketProduct = BasketProduct::where('basket_id', $basketId)
-                                      ->where('product_id', $productId)
-                                      ->first();
-        
+            ->where('product_id', $productId)
+            ->first();
+
         if (!$basketProduct) {
-            \Log::error("Product not found. Basket ID: {$basketId}, Product ID: {$productId}");
-            return response()->json(['error' => 'Product not found in this basket'], 404);
+            return response()->json(['error' => 'Product not found in the basket'], 404);
         }
-        
-        // Delete the basket product
+
+        // Delete the product from the basket
         $basketProduct->delete();
-        
-        return response()->json(['message' => 'Product removed from basket successfully'], 200);
+
+        return response()->json(['success' => 'Product removed from basket'], 200);
+    }
+
+
+    public function calculateTotal()
+    {
+        try {
+            $user = auth()->user();
+            
+            // Check if the user is authenticated
+            if (!$user) {
+                return response()->json(['error' => 'User not authenticated'], 401);
+            }
+    
+            // Check if the user has a basket
+            $basket = $user->basket;
+            if (!$basket) {
+                $basket = $user->basket()->create(); // Create a basket if it doesn't exist
+            }
+    
+            $basketId = $basket->id;
+    
+            // Calculate total quantity
+            $totalQuantity = BasketProduct::where('basket_id', $basketId)
+                ->where('quantity', '>', 0) // Ensure valid quantities
+                ->sum('quantity');
+    
+            // Calculate the total price
+            $totalPrice = BasketProduct::where('basket_id', $basketId)
+                ->join('products', 'basket_products.product_id', '=', 'products.id')
+                ->whereNotNull('products.price') // Ensure product has a valid price
+                ->sum(\DB::raw('basket_products.quantity * products.price'));
+    
+            // Return the response
+            return response()->json([
+                'total_quantity' => $totalQuantity,
+                'total_price' => $totalPrice
+            ], 200);
+    
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong: ' . $e->getMessage()], 500);
+        }
     }
     
     

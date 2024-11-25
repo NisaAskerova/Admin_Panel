@@ -111,4 +111,33 @@ class UserController extends Controller
             ], 404);
         }
     }
+    public function logout(Request $request)
+    {
+        try {
+            // Authenticated user
+            $user = $request->user();
+    
+            // Check if user is authenticated
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not authenticated'
+                ], 401); // Unauthorized
+            }
+    
+            // Delete the current access token
+            $user->currentAccessToken()->delete();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully logged out'
+            ], 200); // Success
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Server error: ' . $e->getMessage(),
+            ], 500); // Internal Server Error
+        }
+    }
+    
 }
