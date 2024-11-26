@@ -100,30 +100,43 @@ class BasketController extends Controller
     {
         $user = auth()->user(); // Get the logged-in user
         $basketId = $user->basket->id;
-
+    
         // Find the product in the basket
         $basketProduct = BasketProduct::where('basket_id', $basketId)
             ->where('product_id', $request->product_id)
             ->first();
-
+    
         if (!$basketProduct) {
             return response()->json([
                 'error' => 'Product not found in the basket'
             ], 404);
         }
-
+    
+        // Get the product from the products table to check stock quantity
+        $product = Product::find($request->product_id);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+    
+        // Check stock limits
         if ($action === 'increase') {
+            if ($basketProduct->quantity + 1 > $product->stock_quantity) {
+                return response()->json([
+                    'error' => 'Cannot increase quantity beyond available stock'
+                ], 400);
+            }
             $basketProduct->quantity += 1;
         } elseif ($action === 'decrease' && $basketProduct->quantity > 1) {
             $basketProduct->quantity -= 1;
         } else {
             return response()->json(['error' => 'Invalid action or insufficient quantity'], 400);
         }
-
+    
         $basketProduct->save();
-
+    
         return response()->json(['success' => 'Quantity updated successfully'], 200);
     }
+    
 
 
     public function basketQuantity()

@@ -28,7 +28,7 @@ Route::prefix('user')->group(function () {
 });
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', [UserController::class, 'me']); 
-    Route::get('/logout', [UserController::class, 'logout']); 
+    Route::delete('/logout', [UserController::class, 'logout']); 
 });
 
 Route::prefix('sliders')->group(function () {
