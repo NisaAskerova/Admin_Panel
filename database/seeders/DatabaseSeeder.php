@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AboutSecuraSeeder::class);  
         $this->call(OurVisionSeeder::class);  
         $this->call(OurTeamSeeder::class);  
+        $this->call(StateSeeder::class);  
+        $this->call(CitySeeder::class);  
     }
 }

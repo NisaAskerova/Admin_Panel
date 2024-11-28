@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewRatingController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\TagController;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
@@ -200,12 +202,21 @@ Route::delete('{basketId}/product/{productId}', [BasketController::class, 'remov
 });
 
 
-Route::prefix('order')->group(function () {
-    Route::post('/create', [OrderController::class, 'createOrder']);
-    Route::get('/details/{order_id}', [OrderController::class, 'getOrderDetails']);
+Route::prefix('orders')->group(function (): void {
+    Route::post('/add', [OrderController::class, 'add']);
 });
 
-Route::prefix('payment')->group(function () {
-    Route::post('/create', [PaymentController::class, 'createPayment']);
-    Route::get('/{order_id}', [PaymentController::class, 'getPayment']);
+Route::prefix('states')->group(function () {
+    Route::post('/store', [StateController::class, 'store']);
+    Route::post('/update/{id}', [StateController::class, 'update']);
+    Route::delete('/delete/{id}', [StateController::class, 'delete']);
+    Route::get('/index', [StateController::class, 'index']);
+    Route::get('/show/{id}', [StateController::class, 'show']);
+});
+Route::prefix('cities')->group(function () {
+    Route::get('/index', [CityController::class, 'index']); // Bütün cities
+    Route::post('/store', [CityController::class, 'store']); // Şəhər əlavə et
+    Route::get('/show/{id}', [CityController::class, 'show']); // Şəhər detalları
+    Route::post('/update/{id}', [CityController::class, 'update']); // Şəhəri yenilə
+    Route::delete('/delete/{id}', [CityController::class, 'destroy']); // Şəhəri sil
 });

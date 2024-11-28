@@ -9,25 +9,53 @@ class Order extends Model
 {
     use HasFactory;
 
-    // Cədvəl adı
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'orders';
 
-    // Mass Assignment üçün icazə verilmiş sütunlar
-    protected $fillable = ['user_id', 'quantity', 'uid', 'basket_id', 'status'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'uid',
+        'basket_id',
+        'status',
+        'name',
+        'mobile_number',
+        'address_line',
+        'area',
+        'city_id',
+        'pin_code',
+        'is_default',
+        'total',
+        'payment_type',
+    ];
 
-    // Əlaqələr
-    public function orderDetails()
-    {
-        return $this->hasMany(OrderDetail::class, 'order_id');
-    }
+    /**
+     * Relationships
+     */
 
+    // Relationship with User
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
-    public function basket()
-{
-    return $this->belongsTo(Basket::class);
-}
 
+    // Relationship with Basket
+    public function basket()
+    {
+        return $this->belongsTo(Basket::class);
+    }
+
+    // Relationship with City
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }
