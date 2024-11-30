@@ -14,13 +14,14 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags=[
-            ['name'=>'Camera'],
-            ['name'=>'Commercial'],
-            ['name'=>'Home Security'],
-            ['name'=>'Lens'],
-            ['name'=>'Commercial Security'],
+        $tags = [
+            ['name' => 'Kamera'],
+            ['name' => 'Ticarət'],
+            ['name' => 'Evlər üçün Təhlükəsizlik'],
+            ['name' => 'Lens'],
+            ['name' => 'Ticarət Təhlükəsizliyi'],
         ];
+        
         foreach ($tags as $tag) {
             Tag::create($tag);
         }

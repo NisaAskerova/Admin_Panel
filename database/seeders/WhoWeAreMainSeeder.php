@@ -9,11 +9,10 @@ class WhoWeAreMainSeeder extends Seeder
     public function run()
     {
         WhoWeAreMain::create([
-            'type' => 'WHO WE ARE',
-            'main_title' => 'Private Security Authorised by the Police to Take Care of Your Security',
-            'main_description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.',
+            'type' => 'BİZ KİMİK',
+            'main_title' => 'Polis İcazəsi ilə Özəl Təhlükəsizlik Xidməti Təqdim Edirik',
+            'main_description' => 'Bizim uzun müddət davam edən xidmətlərimiz göstərir ki, müştərilərimiz bizə güvənirlər. Təhlükəsizlik sahəsindəki təcrübəmiz sayəsində yüksək keyfiyyətli xidmətlər təqdim edirik.',
             'image' => 'images/whoweare.png',
         ]);
-
     }
 }

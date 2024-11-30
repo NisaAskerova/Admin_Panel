@@ -13,13 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories=[
-            ['name'=>'Carbon Alarm'],
-            ['name'=>'Leakage Detector'],
-            ['name'=>'Security System'],
-            ['name'=>'Smart Home'],
-            ['name'=>'Smoke Alarm'],
+        $categories = [
+            ['name' => 'Karbon Alarmları'],
+            ['name' => 'Sızdırmazlıq Aşkarlayıcı'],
+            ['name' => 'Təhlükəsizlik Sistemi'],
+            ['name' => 'Ağıllı Ev'],
+            ['name' => 'Duman Alarmları'],
         ];
+        
         foreach ($categories as $category) {
             Category::create($category);
         }

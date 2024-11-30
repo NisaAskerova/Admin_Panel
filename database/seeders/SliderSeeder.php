@@ -11,30 +11,31 @@ class SliderSeeder extends Seeder
     {
         $sliders = [
             [
-                'title' => 'Your Safety and Comfort is Our First Priority',
-                'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                'title' => 'Sizin Təhlükəsizliyiniz və Rahatlığınız Bizim Ən Önəmli Prioritetimizdir',
+                'description' => 'Uzun müddət ərzində qəbul edilmiş bir həqiqətdir ki, bir oxucu səhifənin dizaynına baxarkən oxunaqlı məzmunla asanlıqla yayına bilər.',
                 'image' => 'images/slideImage.png',
                 'heroImage' => 'icons/yellowLine.svg',
                 'backImage' => 'images/bs1.png',
                 'icon' => 'icons/leftIcon.svg',
             ],
             [
-                'title' => 'Secure Your Future with Our Reliable Services',
-                'description' => 'Our team is dedicated to providing exceptional service to ensure the safety and comfort of all our clients.',
+                'title' => 'Gələcəyinizi Etibarlı Xidmətlərimizlə Təhlükəsizləşdirin',
+                'description' => 'Komandamız, bütün müştərilərimizin təhlükəsizliyini və rahatlığını təmin etmək üçün istisnai xidmət göstərməyə həsr olunub.',
                 'image' => 'images/slideImage.png',
                 'heroImage' => 'icons/yellowLine.svg',
                 'backImage' => 'images/bs2.png',
                 'icon' => 'icons/leftIcon.svg',
             ],
             [
-                'title' => 'Excellence in Safety for Your Peace of Mind',
-                'description' => 'With years of experience, we prioritize security and comfort to protect what matters most to you.',
+                'title' => 'Sizim Sülhünüz Üçün Təhlükəsizlikdə Mükəmməllik',
+                'description' => 'İllərlə təcrübəyə sahibik və ən önəmlisini qorumaq üçün təhlükəsizlik və rahatlığı prioritet edirik.',
                 'image' => 'images/slideImage.png',
                 'heroImage' => 'icons/yellowLine.svg',
                 'backImage' => 'images/bs3.png',
                 'icon' => 'icons/leftIcon.svg',
             ],
         ];
+        
 
         foreach ($sliders as $slider) {
             Slider::create($slider);

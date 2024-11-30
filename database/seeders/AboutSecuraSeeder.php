@@ -15,11 +15,12 @@ class AboutSecuraSeeder extends Seeder
     public function run()
     {
         AboutSecura::create([
-            'type' => 'ABOUT SECURA',
-            'title' => 'Provide Top Class Protection to The Client’s',
-            'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.',
-            'image' => 'images/abutSecura.png',  
-            'icon' => 'icons/leftIcon.svg',   
+            'type' => 'SECURA HAQQINDA',
+            'title' => 'Müştərilərə Yüksək Səviyyəli Müdafiə Təmin Edin',
+            'description' => 'Biz, müştərilərimizin təhlükəsizliyini və məlumatlarının qorunmasını ön planda tutaraq, yüksək səviyyəli qoruma xidmətləri təqdim edirik. Secura, uzun müddətlik təcrübəsi ilə müştərilərinə ən etibarlı və effektiv müdafiə təklif edir.',
+            'image' => 'images/abutSecura.png',
+            'icon' => 'icons/leftIcon.svg',
         ]);
+        
     }
 }

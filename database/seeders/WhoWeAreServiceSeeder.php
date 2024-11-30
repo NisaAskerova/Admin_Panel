@@ -10,29 +10,30 @@ class WhoWeAreServiceSeeder extends Seeder
     public function run()
     {
         WhoWeAreService::create([
-            'title' => 'High Quality Service',
-            'description' => 'It is a long established fact that a reader will be distracted.',
-            'icon' => 'icons/home.svg',  
+            'title' => 'Yüksək Keyfiyyətli Xidmət',
+            'description' => 'Yüksək keyfiyyətli təhlükəsizlik xidmətləri təqdim edirik.',
+            'icon' => 'icons/home.svg',
             'color' => '#fee747',
         ]);
-
+        
         WhoWeAreService::create([
-            'title' => 'Modern System',
-            'description' => 'It is a long established fact that a reader will be distracted.',
-            'icon' => 'icons/system.svg',  
+            'title' => 'Müasir Sistemlər',
+            'description' => 'Müasir sistemlərlə yüksək təhlükəsizlik təmin edirik.',
+            'icon' => 'icons/system.svg',
             'color' => '#FFF',
         ]);
-
+        
         WhoWeAreService::create([
-            'title' => '24/7 Customer Support',
-            'description' => 'It is a long established fact that a reader will be distracted.',
-            'icon' => 'icons/audio.svg',  
+            'title' => '24/7 Dəstək',
+            'description' => 'Müştərilərimizə hər zaman, hər yerdə dəstək veririk.',
+            'icon' => 'icons/audio.svg',
             'color' => '#FFF',
         ]);
+        
         WhoWeAreService::create([
-            'title' => '24/7 Customer Support',
-            'description' => 'It is a long established fact that a reader will be distracted.',
-            'icon' => 'icons/user.svg',  
+            'title' => 'Müştəri Dəstəyi',
+            'description' => 'Təhlükəsizliklə bağlı suallarınızı cavablandırırıq.',
+            'icon' => 'icons/user.svg',
             'color' => '#FFF',
         ]);
     }

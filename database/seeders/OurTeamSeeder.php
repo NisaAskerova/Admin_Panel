@@ -12,27 +12,29 @@ class OurTeamSeeder extends Seeder
     {
         // Add data to the OurTeamMain model
         OurTeamMain::create([
-            'type' => 'OUR Team',
-            'title' => 'Meet Our Professional’s Team',
-            'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+            'type' => 'BİZİM KOMANDAMIZ',
+            'title' => 'Peşəkar Komandamızla Tanış Olun',
+            'description' => 'Uzun müddət ərzində qəbul edilmiş bir həqiqətdir ki, bir oxucu səhifənin dizaynına baxarkən oxunaqlı məzmunla asanlıqla yayına bilər.',
         ]);
+        
         // Add data to the OurTeamService model
         OurTeamService::create([
-            'title' => 'Customer Support',
-            'description' => 'We provide 24/7 customer support to help our clients with any inquiries or issues they may face.',
-            'image' => 'images/ot1.png', // Add a dummy image URL or path
-        ]);
-
-        OurTeamService::create([
-            'title' => 'Consulting Services',
-            'description' => 'Our consulting team offers expert advice and services tailored to our clients’ needs and business goals.',
-            'image' => 'images/ot2.png', // Add a dummy image URL or path
+            'title' => 'Müştəri Dəstəyi',
+            'description' => 'Müştərilərimizin qarşılaşdıqları hər hansı suallar və ya problemlərlə bağlı onlara 24/7 dəstək veririk.',
+            'image' => 'images/ot1.png', // Dummy image URL or path
         ]);
         
         OurTeamService::create([
-            'title' => 'Product Development',
-            'description' => 'We help transform your ideas into innovative products through advanced technology and efficient workflows.',
-            'image' => 'images/ot3.png', // Add a dummy image URL or path
+            'title' => 'Konsultasiya Xidmətləri',
+            'description' => 'Konsultasiya komandamız müştərilərimizin ehtiyaclarına və biznes məqsədlərinə uyğun ekspert məsləhətləri və xidmətləri təqdim edir.',
+            'image' => 'images/ot2.png', // Dummy image URL or path
         ]);
+        
+        OurTeamService::create([
+            'title' => 'Məhsul İnkişafı',
+            'description' => 'Biz, fikirlərinizi yenilikçi məhsullara çevirmək üçün qabaqcıl texnologiyalar və effektiv iş axınlarından istifadə edirik.',
+            'image' => 'images/ot3.png', // Dummy image URL or path
+        ]);
+        
     }
 }

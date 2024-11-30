@@ -17,28 +17,29 @@ class OurVisionSeeder extends Seeder
     {
       
         OurVisionMain::create([
-            'type' => 'OUR VISION/MISSION',
-            'title' => 'We Are Agile, Confidential & Trained',
-            'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.',
+            'type' => 'BİZİM VİZYONUMUZ/MİSSİYAMIZ',
+            'title' => 'Çevik, Gizli və Təlimliyk',
+            'description' => 'Uzun müddət ərzində qəbul edilmiş bir həqiqətdir ki, bir oxucu səhifənin dizaynına baxarkən oxunaqlı məzmunla asanlıqla yayına bilər. Lorem Ipsum istifadə etməyin məqsədi budur.',
             'image' => 'images/ourVision.png',  
         ]);
-
+        
         OurVisionService::create([
-            'title' => 'Trained Agents',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'Təlimli Agentlər',
+            'description' => 'Uzun müddət ərzində qəbul edilmiş bir həqiqətdir ki, bir oxucu səhifənin dizaynına baxarkən asanlıqla yayına bilər.',
             'icon' => 'icons/users.svg', 
         ]);
-
+        
         OurVisionService::create([
-            'title' => 'Quality Products',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'Keyfiyyətli Məhsullar',
+            'description' => 'Biz müştərilərimizə yüksək keyfiyyətli məhsullar təqdim edirik ki, bu da onların ehtiyaclarını tam ödəyir.',
             'icon' => 'icons/box.svg', 
         ]);
-
+        
         OurVisionService::create([
-            'title' => '24/7 Customer Support',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => '24/7 Müştəri Dəstəyi',
+            'description' => 'Biz müştərilərimizin hər bir sualına və ehtiyacına cavab vermək üçün 24/7 xidmət göstəririk.',
             'icon' => 'icons/multimedia.svg', 
         ]);
+        
     }
 }

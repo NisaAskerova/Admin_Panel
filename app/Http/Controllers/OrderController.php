@@ -17,73 +17,78 @@ class OrderController extends Controller
     }
     public function add(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'mobile_number' => 'required',
-            'address_line' => 'required',
-            'area' => 'required',
-            'city_id' => 'required|exists:cities,id',
-            'pin_code' => 'required',
-            'payment_type' => 'required|in:cash,card',
+        // Validate the request
+        $validatedData = $request->validate([
+            'addressData.name' => 'required',
+            'addressData.mobile_number' => 'required',
+            'addressData.address_line' => 'required',
+            'addressData.area' => 'required',
+            'addressData.city_id' => 'required|exists:cities,id',
+            'addressData.pin_code' => 'required',
+            'paymentData.payment_type' => 'required|in:cash,card',
+            'checkoutCart' => 'required|array|min:1',
+            'checkoutCart.*.product_id' => 'required|exists:products,id',
+            'checkoutCart.*.quantity' => 'required|integer|min:1',
+            'discount' => 'required|numeric|min:0|max:100', // Add discount validation
+            'total' => 'required|numeric|min:0', // Add total validation
+            'deliveryCharge' => 'required|numeric|min:0', // Add delivery charge validation
         ]);
     
         $user = auth()->user();
-        $basket = $user->basket; 
-    
-        if (!$basket || $basket->products->isEmpty()) {
-            return redirect()->back()->withErrors('Your basket is empty.');
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
     
         $uid = uniqid('ORD-');
-        $newOrder = new Order([
+        $newOrder = Order::create([
             'user_id' => $user->id,
-            'basket_id' => $basket->id,
             'uid' => $uid,
-            'status' => 1, // Pending
-            'name' => $request->name,
-            'mobile_number' => $request->mobile_number,
-            'address_line' => $request->address_line,
-            'area' => $request->area,
-            'city_id' => $request->city_id,
-            'pin_code' => $request->pin_code,
-            'payment_type' => $request->payment_type,
-            'total' => 0,
+            'status' => 1,
+            'name' => $validatedData['addressData']['name'],
+            'mobile_number' => $validatedData['addressData']['mobile_number'],
+            'address_line' => $validatedData['addressData']['address_line'],
+            'area' => $validatedData['addressData']['area'],
+            'city_id' => $validatedData['addressData']['city_id'],
+            'pin_code' => $validatedData['addressData']['pin_code'],
+            'payment_type' => $validatedData['paymentData']['payment_type'],
+            'total' => 0, // Initialize total
         ]);
-        $newOrder->save();
     
         $total = 0;
     
-        foreach ($basket->products as $basketProduct) {
-            $product = Product::find($basketProduct->product_id);
-    
-            if (!$product || $product->stock_count < $basketProduct->stock_count) {
-                return redirect()->back()->withErrors("Insufficient stock for product: {$product->name}");
+        foreach ($validatedData['checkoutCart'] as $cartItem) {
+            $product = Product::find($cartItem['product_id']);
+            if ($product->stock_quantity < $cartItem['quantity']) {
+                return response()->json([
+                    'error' => "Insufficient stock for product: {$product->name}"
+                ], 400);
             }
     
-            $lineTotal = $basketProduct->stock_count * $product->price;
+            $lineTotal = $cartItem['quantity'] * $product->price;
             $total += $lineTotal;
     
             OrderDetail::create([
                 'order_id' => $newOrder->id,
                 'product_id' => $product->id,
-                'quantity' => $basketProduct->stock_count,
+                'quantity' => $cartItem['quantity'],
                 'price' => $product->price,
                 'total' => $lineTotal,
             ]);
     
-            $product->decrement('stock_count', $basketProduct->stock_count);
+            $product->decrement('stock_quantity', $cartItem['quantity']);
         }
     
-        $newOrder->update(['total' => $total]);
+        // Apply discount
+        $discountAmount = $total * ($validatedData['discount'] / 100);
+        $totalAfterDiscount = $total - $discountAmount;
+        $grandTotal = $totalAfterDiscount + $validatedData['deliveryCharge'];
     
-        $basket->products()->delete(); // Səbəti təmizlə
+        // Update order total
+        $newOrder->update(['total' => $grandTotal]);
     
-        if ($request->payment_type === 'card') {
-            return view('payment', compact('total', 'newOrder'));
-        }
-    
-        return redirect()->route('user.order.index')->with('success', 'Order created successfully.');
+        return response()->json(['message' => 'Order created successfully!', 'order_id' => $newOrder->id], 200);
     }
+    
     
     public function my_orders()
     {

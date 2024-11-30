@@ -12,33 +12,35 @@ class HowWeWorksSeeder extends Seeder
     {
         // Seeder for HowWeWorksMain
         HowWeWorksMain::create([
-            'type' => 'HOW WE WORKS',
-            'main_title' => 'Our Service Process',
-            'main_description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum..',
+            'type' => 'NECƏ İŞLƏYİRİK',
+            'main_title' => 'Xidmət Prosesimiz',
+            'main_description' => 'Bizim xidmət prosesimiz, müştərilərə keyfiyyətli və sürətli xidmət göstərmək üçün uzun illər boyu inkişaf etdirilən bir sistemdir. Bütün addımlar diqqətlə nəzərdən keçirilir və müştəri məmnuniyyəti ön planda saxlanılır.',
             'image' => 'images/howWeWork.png', 
         ]);
+        
         HowWeWorksService::create([
-            'title' => 'Choose Your Service',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'Xidmətinizi Seçin',
+            'description' => 'İlk addım olaraq, ehtiyaclarınıza uyğun xidmət növünü seçin. Bu seçim sizə ən uyğun həlli tapmağa kömək edəcək.',
             'icon' => 'icons/home2.svg', 
         ]);
-
+        
         HowWeWorksService::create([
-            'title' => 'Make An Appointment',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'Təyinat Edin',
+            'description' => 'Siz xidmətimizi seçdikdən sonra, təyin olunan vaxtda görüş təyin edə bilərsiniz. Bu, daha sonra prosesin daha rahat və sürətli irəliləməsini təmin edəcək.',
             'icon' => 'icons/calendarBig.svg',
         ]);
-
+        
         HowWeWorksService::create([
-            'title' => 'Development',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'İnkişaf',
+            'description' => 'Xidmətimizə başlandıqdan sonra, müvafiq inkişaf mərhələlərinə keçirik. Hər bir mərhələdə, müştərinin tələblərinə uyğun dəyişikliklər ediləcək.',
             'icon' => 'icons/ecommers.svg',
         ]);
-
+        
         HowWeWorksService::create([
-            'title' => 'Support',
-            'description' => 'It is a long established fact that a reader will be distracted.',
+            'title' => 'Dəstək',
+            'description' => 'İşlər tamamlandıqdan sonra, müştərilərimizə dəstək göstərilməkdədir. Suallarınız və ya hər hansı bir məsələ ilə bağlı yardım üçün bizə müraciət edə bilərsiniz.',
             'icon' => 'icons/user.svg',
         ]);
+        
     }
 }

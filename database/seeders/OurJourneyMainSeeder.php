@@ -9,9 +9,10 @@ class OurJourneyMainSeeder extends Seeder
     public function run()
     {
         OurJourneyMain::create([
-            'type' => 'OUR JOURNEY',
-            'title' => 'Trusted by 1000+ Happy Customers Who are Using Our Services Since 1995',
-            'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+            'type' => 'BİZİM YOLCULUĞUMUZ',
+            'title' => '1995-ci ildən bəri xidmətlərimizdən istifadə edən 1000+ Məmnun Müştəri Tərəfindən Etibar Edilir',
+            'description' => 'Uzun müddət ərzində qəbul edilmiş bir həqiqətdir ki, bir oxucu səhifənin dizaynına baxarkən oxunaqlı məzmunla asanlıqla yayına bilər.',
         ]);
+        
     }
 }

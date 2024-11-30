@@ -9,22 +9,24 @@ class OurJourneyCounterSeeder extends Seeder
     public function run()
     {
         OurJourneyCounter::create([
-            'title' => 'Our Professional',
+            'title' => 'Peşəkarlarımız',
             'count' => 150,
         ]);
-
+        
         OurJourneyCounter::create([
-            'title' => 'Projects Completed',
+            'title' => 'Tamamlanan Layihələr',
             'count' => 850,
         ]);
-
+        
         OurJourneyCounter::create([
-            'title' => 'Satisfied Clients',
+            'title' => 'Məmnun Müştərilər',
             'count' => 1000,
         ]);
+        
         OurJourneyCounter::create([
-            'title' => 'Award Achieved',
+            'title' => 'Qazanılan Mükafatlar',
             'count' => 30,
         ]);
+        
     }
 }

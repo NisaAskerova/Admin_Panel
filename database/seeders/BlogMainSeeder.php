@@ -10,9 +10,10 @@ class BlogMainSeeder extends Seeder
     public function run()
     {
         BlogMain::create([
-            'type' => 'OUR BLOG',
-            'title' => 'Our Latest Blogs',
-            'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.',
+            'type' => 'BLOQUMUZ',
+            'title' => 'Son Bloqlarımız',
+            'description' => 'Bizim bloqlarımızda müştərilərimizə faydalı məlumatlar, təcrübələr və tövsiyələr təqdim edirik. Ən son yeniliklər və mövzular haqqında məlumatları burada tapa bilərsiniz.',
         ]);
+        
     }
 }
