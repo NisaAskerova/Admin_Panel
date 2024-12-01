@@ -28,70 +28,77 @@ class BasketController extends Controller
 
     // Display products in the basket
     public function show()
-{
-    $user = auth()->user();
-
-    if (!$user || !$user->basket) {
-        return response()->json(['error' => 'User does not have a basket'], 404);
-    }
-
-    // Fetch products in the user's basket
-    $products = BasketProduct::with('product:id,title,price,image,stock_quantity')
-        ->where('basket_id', $user->basket->id)
-        ->get()
-        ->map(function ($basketProduct) {
-            $basketProduct->quantity = $basketProduct->quantity; // Directly access the quantity from BasketProduct
-            return $basketProduct;
+    {
+        $user = auth()->user();
+    
+        if (!$user || !$user->basket) {
+            return response()->json(['error' => 'User does not have a basket'], 404);
+        }
+    
+        // Fetch products in the user's basket
+        $products = BasketProduct::with('product:id,title,price,image,stock_quantity')
+            ->where('basket_id', $user->basket->id)
+            ->get()
+            ->map(function ($basketProduct) {
+                $basketProduct->quantity = $basketProduct->quantity; 
+                return $basketProduct;
+            });
+    
+        // Calculate total quantity and total price
+        $totalQuantity = $products->sum('quantity');  
+        $totalPrice = $products->sum(function ($basketProduct) {
+            return $basketProduct->quantity * $basketProduct->product->price; 
         });
-
-    // Calculate total quantity and total price
-    $totalQuantity = $products->sum('quantity');  // Sum the quantities of the products
-    $totalPrice = $products->sum(function ($basketProduct) {
-        return $basketProduct->quantity * $basketProduct->product->price; // Calculate total price by multiplying quantity and product price
-    });
-
-    // Return the products along with the total quantity and total price
-    return response()->json([
-        'products' => $products,
-        'total_quantity' => $totalQuantity,
-        'total_price' => $totalPrice
-    ], 200);
-}
+    
+        return response()->json([
+            'basket_id' => $user->basket->id, 
+            'products' => $products,
+            'total_quantity' => $totalQuantity,
+            'total_price' => $totalPrice
+        ], 200);
+    }
+    
 
 
     // Add product to the basket
     public function store(Request $request)
     {
         $user = auth()->user();
-
+    
+        // Eğer kullanıcının sepeti yoksa oluştur
         if (!$user->basket) {
-            $user->basket()->create();
+            $user->basket()->create();  // Sepet oluşturuluyor
         }
-
-        $basketId = $user->basket->id;
+    
+        $basketId = $user->basket->id;  // Kullanıcının sepet id'si alınıyor
         $product = Product::find($request->product_id);
-
+    
+        // Ürün mevcut mu ve stokta mı kontrol et
         if (!$product || !$product->has_stock) {
             return response()->json(['message' => 'Product not available'], 404);
         }
-
+    
+        // Sepette bu üründen varsa, miktarı artır
         $basketProduct = BasketProduct::where('basket_id', $basketId)
             ->where('product_id', $product->id)
             ->first();
-
+    
         if ($basketProduct) {
+            // Ürün mevcutsa miktarını artır
             $basketProduct->quantity += $request->quantity;
             $basketProduct->save();
         } else {
+            // Ürün yoksa, yeni bir satır oluştur
             BasketProduct::create([
                 'basket_id' => $basketId,
                 'product_id' => $product->id,
                 'quantity' => $request->quantity,
             ]);
         }
-
+    
         return response()->json(['message' => 'Product added successfully'], 200);
     }
+    
 
 
     // Update product quantity in the basket

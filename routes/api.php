@@ -202,7 +202,7 @@ Route::delete('{basketId}/product/{productId}', [BasketController::class, 'remov
 });
 
 
-Route::prefix('orders')->group(function (): void {
+Route::prefix('orders')->group(function (){
     Route::post('/add', [OrderController::class, 'add']);
 });
 
