@@ -13,18 +13,16 @@ class BasketProduct extends Model
 
     protected $fillable = ['basket_id', 'product_id', 'quantity']; 
 
-    // Basket ilə əlaqə
+
     public function basket()
     {
         return $this->belongsTo(Basket::class, 'basket_id');
     }
 
-    // Product ilə əlaqə
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-
     
 }
 

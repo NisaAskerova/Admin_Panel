@@ -21,12 +21,19 @@ class Basket extends Model
     {
         return $this->belongsToMany(Product::class, 'basket_products')->withPivot('quantity');
     }
-    
+    public function basketProducts()
+    {
+        return $this->hasMany(BasketProduct::class, 'basket_id');
+    }
+
     public function getCartCount()
 {
     // Bu metod səbətdəki ümumi məhsul sayını qaytarır
     return $this->products()->sum('pivot.quantity');
 }
-  
+public function orders()
+{
+    return $this->hasMany(Order::class, 'basket_id');
+}
 
 }

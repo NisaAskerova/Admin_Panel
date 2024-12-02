@@ -41,21 +41,23 @@ class Order extends Model
      * Relationships
      */
 
-    // Relationship with User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    // Relationship with Basket
-    public function basket()
-    {
-        return $this->belongsTo(Basket::class);
-    }
-
     // Relationship with City
     public function city()
     {
         return $this->belongsTo(City::class);
     }
+
+    public function basketProducts()
+{
+    return $this->hasMany(BasketProduct::class, 'basket_id', 'basket_id');
+}
+public function basket()
+{
+    return $this->belongsTo(Basket::class, 'basket_id');
+}
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 }
