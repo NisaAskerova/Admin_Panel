@@ -11,8 +11,8 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'title' => 'High Vision Camera',
-                'description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                'title' => 'Yüksək Görüntü Kamera',
+                'description' => 'Bir səhifənin düzəninə baxarkən oxuyucu səhifənin oxunaqlı məzmunu ilə diqqətinin yayılacağı artıq uzun müddət məlum olmuş bir faktdır.',
                 'image' => 'products/p1.png',
                 'images' => [
                     'products/p1.png',
@@ -29,8 +29,8 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
-                'title' => 'Full HD WiFi Camera',
-                'description' => 'The Full HD WiFi Camera provides high-definition video with seamless wireless connectivity. It is designed to offer clear and detailed surveillance footage, making it ideal for home or office security. The camera’s advanced features include motion detection, real-time alerts, and easy integration with smart home systems.',
+                'title' => 'Full HD WiFi Kamera',
+                'description' => 'Full HD WiFi Kamera yüksək keyfiyyətli video təmin edərək problemsiz simsiz bağlantı təqdim edir. Bu kamera, ev və ofis təhlükəsizliyi üçün ideal olan aydın və detallı nəzarət görüntüləri təqdim etmək üçün hazırlanmışdır. Kameranın inkişaf etmiş xüsusiyyətlərinə hərəkət aşkarlama, real vaxt xəbərdarlıqları və ağıllı ev sistemləri ilə asan inteqrasiya daxildir.',
                 'image' => 'products/p2.png',
                 'images' => [
                     'products/p2.png',
@@ -47,8 +47,8 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
-                'title' => 'Smart Door Lock',
-                'description' => 'The Smart Door Lock offers advanced security features with easy installation and smartphone control. This innovative lock enhances the safety of your home by providing keyless entry and real-time access management.',
+                'title' => 'Ağıllı Qapı Kilidi',
+                'description' => 'Ağıllı Qapı Kilidi, asan quraşdırma və smartfon idarəetməsi ilə inkişaf etmiş təhlükəsizlik xüsusiyyətləri təklif edir. Bu innovativ kilid, açarsız giriş və real vaxtda daxilolma idarəçiliyi təmin edərək evinizin təhlükəsizliyini artırır.',
                 'image' => 'products/p3.png',
                 'images' => [
                     'products/p3.png',
@@ -65,9 +65,8 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [3],
             ],
             [
-                //4
-                'title' => 'Ultra HDR Camera',
-                "description" => "The Ultra HDR Camera delivers stunning high dynamic range video for detailed surveillance. This camera is designed to capture the finest details in both bright and dark areas, providing exceptional clarity and depth. Ideal for both indoor and outdoor use, it ensures your property is monitored with the highest quality video. Features include motion detection, real-time alerts, and seamless integration with smart home systems. Its robust build and reliable performance make it a top choice for any security setup.",
+                'title' => 'Ultra HDR Kamera',
+                'description' => 'Ultra HDR Kamera, ətraflı nəzarət üçün heyrətamiz yüksək dinamik aralıq video təqdim edir. Bu kamera, həm parlaq, həm də qaranlıq sahələrdə ən incə detalları çəkmək üçün hazırlanmışdır, bu da istənilən ərazi üçün yüksək keyfiyyətli video təmin edir. Xüsusiyyətləri arasında hərəkət aşkarlama, real vaxt xəbərdarlıqları və ağıllı ev sistemləri ilə problemsiz inteqrasiya daxildir. Güclü quruluşu və etibarlı performansı, hər hansı bir təhlükəsizlik quruluşu üçün onu ən yaxşı seçim edir.',
                 'image' => 'products/p4.png',
                 'images' => [
                     'products/p4.png',
@@ -84,9 +83,8 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
-                //5
-                'title' => 'Wireless Camera',
-                "description" => "The Wireless Camera provides seamless connectivity and high-definition video recording. This camera is perfect for those who need a versatile and portable security solution. With its wireless capabilities, you can easily place it anywhere without worrying about cable management. It offers clear video quality, motion detection, and real-time notifications. The camera is also compatible with various smart home systems, making it a convenient addition to your security setup.",
+                'title' => 'Simsiz Kamera',
+                'description' => 'Simsiz Kamera, problemsiz bağlantı və yüksək keyfiyyətli video yazma təqdim edir. Bu kamera, hər yerdə rahatlıqla yerləşdirilə bilən çox yönlü və portativ bir təhlükəsizlik həlli axtaranlar üçün mükəmməldir. Simsiz xüsusiyyətləri sayəsində kabel idarə etməsi haqqında narahat olmadan asanlıqla istənilən yerdə yerləşdirilə bilər. Aydın video keyfiyyəti, hərəkət aşkarlama və real vaxtda bildirişlər təqdim edir. Kamera həmçinin müxtəlif ağıllı ev sistemləri ilə uyğun gəlir, bu da onu təhlükəsizlik quruluşunuza rahat bir əlavə edir.',
                 'image' => 'products/p5.png',
                 'images' => [
                     'products/p5.png',
@@ -104,8 +102,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //6
-                'title' => 'Vision Pro Cameraa',
-                "description" => "The Vision Pro Camera by Samsung offers unparalleled video quality and advanced features, making it an excellent choice for professional surveillance and monitoring. This camera provides stunning high-definition video and includes advanced functionalities such as enhanced zoom capabilities, intelligent motion detection, and superior night vision. Its robust design ensures durability and reliability in various environments, while its compatibility with smart home systems allows for seamless integration. Ideal for both indoor and outdoor use, the Vision Pro Camera is perfect for those seeking top-tier performance in their security setup.",
+                'title' => 'Vision Pro Kamera',
+                'description' => 'Samsung-un Vision Pro Kamerası mükəmməl video keyfiyyəti və inkişaf etmiş xüsusiyyətlər təqdim edir, bu da onu peşəkar müşahidə və izləmə üçün əla seçim edir. Bu kamera möhtəşəm yüksək çözünürlüklü video təmin edir və artırılmış zoom qabiliyyətləri, ağıllı hərəkət aşkarlaması və mükəmməl gecə görmə kimi inkişaf etmiş funksionallıqlara malikdir. Onun davamlı dizaynı müxtəlif mühitlərdə etibarlılığını təmin edir, eyni zamanda ağıllı ev sistemləri ilə uyumluluğu onu rahat inteqrasiya etməyə imkan verir. Hem daxili, hem də xarici istifadəyə ideal olan Vision Pro Kamera, yüksək performans axtaranlar üçün mükəmməl bir həlldir.',
                 'image' => 'products/p6.png',
                 'images' => [
                     'products/p6.png',
@@ -122,8 +120,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //7
-                'title' => 'Wide Angle Smart Camera',
-                "description" => "The Wide Angle Smart Camera offers an expansive field of view with its advanced wide-angle lens, making it ideal for comprehensive surveillance and monitoring. This smart camera integrates seamlessly with various smart home systems, providing convenient features such as remote control, real-time alerts, and intelligent motion detection. With its sleek design and high-definition video recording capabilities, it ensures clear and detailed images, even in low-light conditions. The camera's wireless functionality allows for flexible placement and easy setup, providing a versatile security solution for any home or business.",
+                'title' => 'Geniş Bucaqlı Ağıllı Kamera',
+                'description' => 'Geniş Bucaqlı Ağıllı Kamera geniş bir baxış sahəsi təqdim edir, bu da onu geniş müşahidə və izləmə üçün ideal edir. Bu ağıllı kamera müxtəlif ağıllı ev sistemləri ilə problemsiz inteqrasiya olunur və uzaqdan idarəetmə, real vaxt bildirişləri və ağıllı hərəkət aşkarlaması kimi rahat xüsusiyyətlər təqdim edir. Şık dizaynı və yüksək çözünürlüklü video çəkilişi ilə, hətta zəif işıq şəraitində belə aydın və detallı görüntülər təmin edir. Kameranın simsiz funksionallığı ona çevik yerləşdirmə və asan quraşdırma imkanı verir, hər hansı bir ev və ya biznes üçün çox yönlü təhlükəsizlik həlli təqdim edir.',
                 'image' => 'products/p7.png',
                 'images' => [
                     'products/p7.png',
@@ -140,8 +138,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //8
-                "title" => "Dome Camera",
-                "description" => "The Dome Camera combines sleek design with cutting-edge technology to deliver exceptional video quality and 360-degree coverage. Ideal for comprehensive surveillance, this camera features a compact, unobtrusive dome design that fits seamlessly into various settings. It offers high-definition video recording and advanced features such as motion detection and night vision. The camera's 360-degree rotation capability ensures complete coverage of your space, making it a valuable tool for maintaining security and monitoring activity. With its easy installation and integration with smart home systems, the Dome Camera provides both functionality and convenience.",
+                'title' => 'Dome Kamera',
+                'description' => 'Dome Kamera müasir dizaynı və qabaqcıl texnologiyası ilə mükəmməl video keyfiyyəti və 360 dərəcə əhatə təmin edir. Geniş müşahidə üçün ideal olan bu kamera kompakt və qeyri-adi bir dome dizaynına malikdir, müxtəlif mühitlərdə problemsiz yerləşir. Yüksək çözünürlüklü video çəkmə və hərəkət aşkarlaması və gecə görmə kimi inkişaf etmiş xüsusiyyətlərə malikdir. Kameranın 360 dərəcə dönmə qabiliyyəti, məkanınızın tam əhatəsini təmin edir, bu da təhlükəsizliyi qorumaq və fəaliyyətləri izləmək üçün vacib bir alətdir. Asan quraşdırma və ağıllı ev sistemləri ilə inteqrasiya olmağı ilə Dome Kamera həm funksionallıq, həm də rahatlıq təqdim edir.',
                 'image' => 'products/p8.png',
                 'images' => [
                     'products/p8.png',
@@ -158,8 +156,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //9
-                "title" => "Wireless Security Camera",
-                "description" => "The Wireless Security Camera from HK Vision provides dependable performance with its wireless connectivity and high-definition recording. This camera is designed to offer flexible placement options and easy installation, making it a convenient choice for both residential and commercial security needs. It delivers clear video quality and features reliable wireless transmission to ensure seamless monitoring. Although the camera is praised for its value and performance, occasional connectivity issues have been noted. Overall, it's a solid choice for those seeking a budget-friendly option with essential security features.",
+                'title' => 'Simsiz Təhlükəsizlik Kamerası',
+                'description' => 'HK Vision tərəfindən təqdim edilən Simsiz Təhlükəsizlik Kamerası simsiz bağlantı və yüksək çözünürlüklü çəkmə ilə etibarlı performans təmin edir. Bu kamera çevik yerləşdirmə və asan quraşdırma imkanı təqdim edir, həm yaşayış, həm də kommersiya təhlükəsizliyi ehtiyacları üçün əlverişli seçim edir. Aydın video keyfiyyəti təqdim edir və etibarlı simsiz ötürülmə ilə problemsiz izləmə təmin edir. Kamera qiymət və performans baxımından yüksək qiymətləndirilir, lakin zaman-zaman bağlantı problemləri müşahidə edilmişdir. Ümumiyyətlə, əsas təhlükəsizlik xüsusiyyətləri olan büdcəyə uyğun bir seçimdir.',
                 'image' => 'products/p9.png',
                 'images' => [
                     'products/p9.png',
@@ -176,8 +174,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //10
-                "title" => "Smart Desk Camera",
-                "description" => "The Smart Desk Camera by D-Link provides an affordable solution for high-definition video needs, ideal for home and office environments. This camera is designed to deliver clear and crisp video quality, making it suitable for both casual and professional use. With its compact size and easy installation, the Smart Desk Camera fits seamlessly into any workspace. It offers reliable performance for basic surveillance and video conferencing, though it may not meet the needs of users requiring high-definition video for more demanding applications. Overall, it's a cost-effective choice for those seeking a simple and efficient camera solution.",
+                'title' => 'Ağıllı Masa Kamerası',
+                'description' => 'D-Link tərəfindən təqdim edilən Ağıllı Masa Kamerası yüksək çözünürlüklü video ehtiyacları üçün sərfəli bir həll təqdim edir, həm ev, həm də ofis mühitləri üçün idealdır. Bu kamera aydın və təmiz video keyfiyyəti təmin etmək üçün dizayn edilmişdir, həm gündəlik, həm də peşəkar istifadə üçün uygundur. Kompakt ölçüsü və asan quraşdırılması ilə Ağıllı Masa Kamerası hər hansı bir iş yerinə rahatlıqla yerləşir. Əsas təhlükəsizlik izləmə və video konfrans üçün etibarlı performans təklif edir, lakin daha yüksək video keyfiyyəti tələb edən istifadəçilər üçün uyğun olmaya bilər. Ümumiyyətlə, sadə və effektiv bir kamera həlli axtaranlar üçün sərfəli seçimdir.',
                 'image' => 'products/p10.png',
                 'images' => [
                     'products/p10.png',
@@ -194,8 +192,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //11
-                "title" => "High Vision HD Camera",
-                "description" => "The High Vision HD Camera from HK Vision provides exceptional video clarity and detail with its high-definition recording capabilities. Designed for superior performance, this camera features advanced technologies to ensure reliable and high-quality video surveillance. It offers easy installation and user-friendly controls, making it suitable for both residential and commercial security applications. The camera's robust design and dependable functionality make it a top choice for those seeking a high-performing security solution. However, users have noted that while the video quality is excellent, the accompanying app could benefit from improvements.",
+                "title" => "Yüksək Görüntü HD Kamera",
+                "description" => "HK Vision-dən Yüksək Görüntü HD Kamera, yüksək dəqiqlikli video qeyd etmə qabiliyyəti ilə istisna video aydınlığı və detalları təmin edir. Yüksək performans üçün nəzərdə tutulmuş bu kamera, etibarlı və yüksək keyfiyyətli video müşahidə üçün inkişaf etmiş texnologiyalar təqdim edir. Quraşdırılması asan və istifadəçi dostu idarəetmə ilə həm yaşayış, həm də kommersiya təhlükəsizliyi tətbiqləri üçün uyğundur. Kameranın möhkəm dizaynı və etibarlı funksionallığı onu yüksək performanslı təhlükəsizlik həlli axtaranlar üçün əla seçim edir. Lakin istifadəçilər qeyd ediblər ki, video keyfiyyəti mükəmməl olsa da, əlaqəli tətbiq daha yaxşı inkişaf etdirilə bilər.",
                 'image' => 'products/p11.png',
                 'images' => [
                     'products/p11.png',
@@ -212,14 +210,14 @@ class ProductSeeder extends Seeder
             ],
             [
                 //12
-                "title" => "Smart HDR WiFi Camera",
-                "description" => "The Smart HDR WiFi Camera by D-Link provides high dynamic range video and seamless WiFi connectivity, offering a blend of advanced features and user-friendly performance. This camera is designed to capture vivid and detailed video with enhanced contrast and color accuracy, making it ideal for both security and everyday monitoring. The integrated WiFi capability ensures easy connectivity and remote access, allowing users to monitor their premises from anywhere. While the camera offers great video quality, some users have noted that the app could be improved for a more intuitive experience. Overall, it’s a reliable choice for those needing high-definition video with HDR support.",
-                'image' => 'products/p12.jpg',
+                "title" => "Ağıllı HDR WiFi Kamera",
+                "description" => "D-Link-dən Ağıllı HDR WiFi Kamera, yüksək dinamik diapazonlu video və problemsiz WiFi əlaqəsi ilə inkişaf etmiş xüsusiyyətlər və istifadəçi dostu performans təqdim edir. Bu kamera, artırılmış kontrast və rəng dəqiqliyi ilə canlı və detallı video qeyd etməyi təmin edir, bu da onu həm təhlükəsizlik, həm də gündəlik izləmə üçün ideal edir. İnkişaf etmiş WiFi imkanları asan əlaqə və uzaqdan nəzarət imkanı təmin edərək istifadəçilərə ərazilərini hər yerdən izləməyə imkan verir. Kamera mükəmməl video keyfiyyəti təklif etsə də, bəzi istifadəçilər tətbiqin daha intuitiv olması üçün inkişaf etdirilməsi lazım olduğunu qeyd ediblər. Ümumilikdə, HDR dəstəyi ilə yüksək keyfiyyətli video tələb edənlər üçün etibarlı seçimdir.",
+                'image' => 'products/p12.png',
                 'images' => [
-                    'products/p12.jpg',
-                    'products/p12.jpg',
-                    'products/p12.jpg',
-                    'products/p12.jpg',
+                    'products/p12.png',
+                    'products/p12.png',
+                    'products/p12.png',
+                    'products/p12.png',
                 ],
                 'price' => 100,
                 'has_stock' => true,
@@ -230,8 +228,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //13
-                "title" => "Smart Lock",
-                "description"=> "A smart lock that can be controlled via mobile app for easy access and security.",
+                "title" => "Ağıllı Kilid",
+                "description" => "Mobil tətbiq vasitəsilə asan giriş və təhlükəsizlik təmin edən ağıllı kilid.",
                 'image' => 'products/p13.jpg',
                 'images' => [
                     'products/p13.jpg',
@@ -248,8 +246,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //14
-                "title" => "Smart Padlock",
-                "description"=> "Portable smart padlock that offers keyless access with Bluetooth technology.",
+                "title" => "Ağıllı Kilit",
+                "description" => "Bluetooth texnologiyası ilə açarsız giriş təmin edən portativ ağıllı kilit.",
                 'image' => 'products/p14.jpg',
                 'images' => [
                     'products/p14.jpg',
@@ -266,8 +264,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //15
-                "title" => "CCTV Camera",
-                "description"=> "High-definition CCTV camera with night vision and motion detection.",
+                "title" => "CCTV Kamera",
+                "description" => "Gecə görmə və hərəkət aşkarlama xüsusiyyətləri ilə yüksək dəqiqlikli CCTV kamera.",
                 'image' => 'products/p15.jpeg',
                 'images' => [
                     'products/p15.jpeg',
@@ -282,10 +280,11 @@ class ProductSeeder extends Seeder
                 'brand_ids' => 2,
                 'tag_ids' => [1, 3],
             ],
+
             [
                 //16
-                "title" => "IP Camera",
-                "description"=> "High-definition IP camera with advanced motion detection and night vision.",
+                "title" => "IP Kamera",
+                "description" => "Ən müasir hərəkət aşkar etmə və gecə görmə funksiyalarına sahib yüksək keyfiyyətli IP kamera.",
                 'image' => 'products/p16.jpg',
                 'images' => [
                     'products/p16.jpg',
@@ -302,8 +301,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //17
-                "title" => "Smart Doorbell",
-                "description"=> "Video doorbell with two-way audio and HD video stream.",
+                "title" => "Ağıllı Zəng Qapısı",
+                "description" => "İki tərəfli audio və HD video axınına sahib video zəng qapısı.",
                 'image' => 'products/p17.jpg',
                 'images' => [
                     'products/p17.jpg',
@@ -320,8 +319,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //18
-                "title" => "Home Security Kit",
-                "description"=> "Complete home security system with sensors and cameras.",
+                "title" => "Evdə Təhlükəsizlik Kit",
+                "description" => "Sensorlar və kameralarla tam təhlükəsizlik sistemi.",
                 'image' => 'products/p18.jpg',
                 'images' => [
                     'products/p18.jpg',
@@ -334,12 +333,12 @@ class ProductSeeder extends Seeder
                 'stock_quantity' => 5,
                 'category_ids' => [1],
                 'brand_ids' => 4,
-                'tag_ids' => [3,5],
+                'tag_ids' => [3, 5],
             ],
             [
                 //19
                 "title" => "Wi-Fi Router",
-                "description"=> "Dual-band Wi-Fi router with high-speed internet support.",
+                "description" => "Yüksək sürətli internet dəstəyi ilə iki zolaqlı Wi-Fi router.",
                 'image' => 'products/p19.webp',
                 'images' => [
                     'products/p19.webp',
@@ -356,8 +355,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //20
-                "title" => "igloohome Water Leakage Detector",
-                "description"=> "Water leakage detector with smart alerts via mobile app, ideal for homes and offices.",
+                "title" => "igloohome Su Sızması Aşkar Edici",
+                "description" => "Evdə və ofislərdə istifadə üçün mobil tətbiq vasitəsilə ağıllı xəbərdarlıqlar verən su sızması aşkar edici.",
                 'image' => 'products/p20.webp',
                 'images' => [
                     'products/p20.webp',
@@ -370,12 +369,13 @@ class ProductSeeder extends Seeder
                 'stock_quantity' => 5,
                 'category_ids' => [1],
                 'brand_ids' => 1,
-                'tag_ids' => [2,5],
+                'tag_ids' => [2, 5],
             ],
+
             [
                 //21
-                "title" => "HIK Vision Water Leak Detector",
-                "description"=> "Reliable water leakage detector with high sensitivity and wireless connectivity.",
+                "title" => "HIK Vision Su Sızması Aşkar Edici",
+                "description" => "Yüksək həssaslıq və simsiz bağlantı ilə etibarlı su sızması aşkar edici.",
                 'image' => 'products/p21.jpg',
                 'images' => [
                     'products/p21.jpg',
@@ -392,8 +392,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //22
-                "title" => "Ezvir Smart Leakage Detector",
-                "description"=> "Smart water leakage detector with app integration and real-time notifications.",
+                "title" => "Ezvir Ağıllı Sızma Aşkar Edici",
+                "description" => "Mobil tətbiq inteqrasiyası və real-vaxtda bildirişlər ilə ağıllı su sızması aşkar edici.",
                 'image' => 'products/p22.png',
                 'images' => [
                     'products/p22.png',
@@ -406,12 +406,12 @@ class ProductSeeder extends Seeder
                 'stock_quantity' => 5,
                 'category_ids' => [1],
                 'brand_ids' => 4,
-                'tag_ids' => [3,4],
+                'tag_ids' => [3, 4],
             ],
             [
                 //23
-                "title" => "D-Link Water Leak Sensor",
-                "description"=> "Water leakage sensor with wireless connection and customizable alert settings.",
+                "title" => "D-Link Su Sızması Sensoru",
+                "description" => "Simsiz bağlantıya sahib su sızması sensoru və fərdiləşdirilə bilən xəbərdarlıq ayarları.",
                 'image' => 'products/p23.jpg',
                 'images' => [
                     'products/p23.jpg',
@@ -428,8 +428,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //24
-                "title" => "Samsung Smart Leakage Detector",
-                "description"=> "Advanced smart water leakage detector with app integration and emergency alerts.",
+                "title" => "Samsung Ağıllı Sızma Aşkar Edici",
+                "description" => "Mobil tətbiq inteqrasiyası və təcili bildirişlər ilə inkişaf etmiş ağıllı su sızması aşkar edici.",
                 'image' => 'products/p24.jpeg',
                 'images' => [
                     'products/p24.jpeg',
@@ -446,8 +446,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 //25
-                "title" => "CP Plus Security Camera System",
-                "description"=> "High-definition security camera system with night vision and motion detection features.",
+                "title" => "CP Plus Təhlükəsizlik Kamera Sistemi",
+                "description" => "Gecə görmə və hərəkət aşkar etmə xüsusiyyətlərinə sahib yüksək keyfiyyətli təhlükəsizlik kamera sistemi.",
                 'image' => 'products/p25.jpg',
                 'images' => [
                     'products/p25.jpg',
@@ -460,12 +460,12 @@ class ProductSeeder extends Seeder
                 'stock_quantity' => 5,
                 'category_ids' => [1],
                 'brand_ids' => 7,
-                'tag_ids' => [1,3],
+                'tag_ids' => [1, 3],
             ],
             [
                 //26
-                "title" => "igloohome Smart Water Leak Detector",
-                "description"=> "Smart water leak detector with real-time alerts and mobile app integration.",
+                "title" => "igloohome Ağıllı Su Sızması Aşkar Edici",
+                "description" => "Real-vaxtda bildirişlər və mobil tətbiq inteqrasiyası ilə ağıllı su sızması aşkar edici.",
                 'image' => 'products/p26.webp',
                 'images' => [
                     'products/p26.webp',
@@ -478,12 +478,12 @@ class ProductSeeder extends Seeder
                 'stock_quantity' => 5,
                 'category_ids' => [1],
                 'brand_ids' => 1,
-                'tag_ids' => [3,4],
+                'tag_ids' => [3, 4],
             ],
             [
                 //27
-                "title" => "D-Link DCS-8600LH Outdoor Camera",
-                "description"=> "The D-Link DCS-8600LH is an outdoor camera with full HD 1080p resolution, night vision, and weatherproof design. It includes motion detection and cloud storage options.",
+                "title" => "D-Link DCS-8600LH Xarici Kamera",
+                "description" => "D-Link DCS-8600LH xarici kamera, tam HD 1080p həlli, gecə görmə və hava şəraitinə davamlı dizayna malikdir. Hərəkət aşkar etmə və bulud yaddaş opsiyaları da mövcuddur.",
                 'image' => 'products/p27.jpg',
                 'images' => [
                     'products/p27.jpg',
@@ -494,12 +494,492 @@ class ProductSeeder extends Seeder
                 'price' => 139,
                 'has_stock' => true,
                 'stock_quantity' => 5,
-                'category_ids' => [3,4],
+                'category_ids' => [3, 4],
                 'brand_ids' => 1,
-                'tag_ids' => [3,4],
+                'tag_ids' => [3, 4],
             ],
-            
+            [
+                // 28
+                "title" => "Ağıllı Qapı Kilidi",
+                "description" => "Igloohome Ağıllı Qapı Kilidi, evinizin təhlükəsizlik səviyyəsini maksimuma çatdırmaq üçün innovativ xüsusiyyətlər təqdim edir. Bu kilid, uzaqdan idarəetmə funksiyası ilə evinizə giriş imkanlarını asanlaşdırır və çoxsaylı təhlükəsizlik protokollarını dəstəkləyir. Müasir dizaynı ilə həm estetik görünüşə, həm də funksionallığa malikdir.",
+                'image' => 'products/p28.jpg',
+                'images' => [
+                    'products/p28.jpg',
+                    'products/p28.jpg',
+                    'products/p28.jpg',
+                    'products/p28.jpg',
+                ],
+                'price' => 299,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 1,
+                'tag_ids' => [3],
+            ],
+            [
+                // 29
+                "title" => "Açıq Hava Təhlükəsizlik Kamerası",
+                "description" => "HIK Vision Açıq Hava Təhlükəsizlik Kamerası, hər cür hava şəraitinə davamlı materiallardan hazırlanıb. Bu kamera, gecə və gündüz yüksək keyfiyyətli görüntü təqdim edərək ətraf mühitinizi təhlükəsiz saxlamaq üçün əla vasitədir. Həmçinin, uzaqdan izləmə funksiyası ilə təhlükəsizliyinizi hər an nəzarətdə saxlayın.",
+                'image' => 'products/p29.webp',
+                'images' => [
+                    'products/p29.webp',
+                    'products/p29.webp',
+                    'products/p29.webp',
+                    'products/p29.webp',
+                ],
+                'price' => 179,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 2,
+                'tag_ids' => [1, 3],
+            ],
+            [
+                // 30
+                "title" => "WiFi Qapı Zəngi Kamerası",
+                "description" => "Ezvir WiFi Qapı Zəngi Kamerası, həm təhlükəsizlik, həm də müasir texnologiya ilə rahatlığı birləşdirir. Bu cihaz, yüksək dəqiqlikli video çəkiliş və ağıllı bildiriş funksiyaları ilə evinizin təhlükəsizlik səviyyəsini artırır. Rahat quraşdırma və istifadəyə uyğun dizayn xüsusiyyətləri ilə hər kəsin diqqətini cəlb edir.",
+                'image' => 'products/p30.webp',
+                'images' => [
+                    'products/p30.webp',
+                    'products/p30.webp',
+                    'products/p30.webp',
+                    'products/p30.webp',
+                ],
+                'price' => 99,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 2,
+                'tag_ids' => [1, 3],
+            ],
+            [
+                // 31
+                "title" => "Ağıllı Hərəkət Sensoru",
+                "description" => "D-Link Ağıllı Hərəkət Sensoru, yüksək həssaslıqda hərəkət aşkarlama xüsusiyyəti ilə evinizdə tam təhlükəsizlik yaradır. Bu sensor, hərəkəti anında qeyd edir və bildiriş göndərir. Evinizin hər küncünü əhatə edən bu cihaz, modern texnologiyanın ən yaxşı nümunələrindən biridir.",
+                'image' => 'products/p31.jpg',
+                'images' => [
+                    'products/p31.jpg',
+                    'products/p31.jpg',
+                    'products/p31.jpg',
+                    'products/p31.jpg',
+                ],
+                'price' => 89,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 5,
+                'tag_ids' => [1, 3],
+            ],
+            [
+                // 32
+                "title" => "Ağıllı İşıq Lampası",
+                "description" => "Samsung Ağıllı İşıq Lampası, müxtəlif rəng rejimləri və enerji qənaət rejimi ilə evinizi bəzəyən mükəmməl seçimdir. Müasir görünüşü ilə həm dekorativ, həm də funksional tələbləri qarşılayan bu lampa, ağıllı ev texnologiyasının ideal nümunəsidir. İşıqlandırmada yenilik axtaranlar üçün mükəmməl həll yoludur.",
+                'image' => 'products/p32.jpeg',
+                'images' => [
+                    'products/p32.jpeg',
+                    'products/p32.jpeg',
+                    'products/p32.jpeg',
+                    'products/p32.jpeg',
+                ],
+                'price' => 60,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 6,
+                'tag_ids' => [3],
+            ],
+            [
+                //33
+                "title" => "Simsiz Təhlükəsizlik Kamerası",
+                "description" => "CP Plus simsiz təhlükəsizlik kamerası, yüksək dəqiqlikli görüntü imkanları ilə evinizi və ya iş yerinizi qorumağa kömək edir. Gecə görmə funksiyası və uzaqdan idarəetmə imkanı ilə təhlükəsizliyi daha da artırır. Bu cihaz, həmçinin sadə quraşdırma və etibarlı istifadə təmin edir.",
+                'image' => 'products/p33.jpeg',
+                'images' => [
+                    'products/p33.jpeg',
+                    'products/p33.jpeg',
+                    'products/p33.jpeg',
+                    'products/p33.jpeg',
+                ],
+                'price' => 129,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 7,
+                'tag_ids' => [1],
+            ],
+            [
+                //34
+                "title" => "Ağıllı Barmaq İzi Qapı Kilidi",
+                "description" => "Igloohome ağıllı barmaq izi qapı kilidi, biometrik təhlükəsizlik texnologiyası ilə evinizə maksimum müdafiə təmin edir. Estetik dizaynı ilə hər növ interyerə uyğunlaşır və istifadə rahatlığı təqdim edir. Elektron idarəetmə funksiyaları ilə təchiz edilmişdir.",
+                'image' => 'products/p34.webp',
+                'images' => [
+                    'products/p34.webp',
+                    'products/p34.webp',
+                    'products/p34.webp',
+                    'products/p34.webp',
+                ],
+                'price' => 349,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 1,
+                'tag_ids' => [3],
+            ],
+            [
+                //35
+                "title" => "Daxili Ağıllı Kamera",
+                "description" => "HIK Vision daxili ağıllı kamera, yüksək keyfiyyətli video izləmə texnologiyası ilə evinizin daxili təhlükəsizliyini təmin edir. Kompakt ölçüləri və sadə quraşdırma prosesinə malikdir. Həmçinin, mobil cihazlarla inteqrasiya edilərək uzaqdan idarə olunma imkanı yaradır.",
+                'image' => 'products/p35.jpeg',
+                'images' => [
+                    'products/p35.jpeg',
+                    'products/p35.jpeg',
+                    'products/p35.jpeg',
+                    'products/p35.jpeg',
+                ],
+                'price' => 159,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 2,
+                'tag_ids' => [1, 3],
+            ],
+            [
+                //36
+                "title" => "Samsung SmartThings Hub",
+                "description" => "Samsung SmartThings Hub, müxtəlif ağıllı ev cihazlarını birləşdirir və idarə edir. Bu cihaz, müxtəlif cihazların avtomatlaşdırılmasını və inteqrasiyasını asanlaşdırır. Geniş ağıllı ev ekosistemləri ilə uyğun işləməyi təmin edir.",
+                'image' => 'products/p36.jpg',
+                'images' => [
+                    'products/p36.jpg',
+                    'products/p36.jpg',
+                    'products/p36.jpg',
+                    'products/p36.jpg',
+                ],
+                'price' => 99,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [4],
+                'brand_ids' => 6,
+                'tag_ids' => [3],
+            ],
+            [
+                //37
+                "title" => "Igloohome Ağıllı Tüstü Alarmı",
+                "description" => "Wi-Fi ilə idarə olunan Igloohome ağıllı tüstü alarmı, yanğın təhlükəsini vaxtında aşkar edərək sizi xəbərdar edir. Şık dizaynı və yüksək funksionallığı ilə həm evlər, həm də iş yerləri üçün ideal seçimdir.",
+                'image' => 'products/p37.webp',
+                'images' => [
+                    'products/p37.webp',
+                    'products/p37.webp',
+                    'products/p37.webp',
+                    'products/p37.webp',
+                ],
+                'price' => 120,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 1,
+                'tag_ids' => [3],
+            ],
+            [
+                //38
+                "title" => "Smoke Detector Pro",
+                "description" => "HIK Vision texnologiyası ilə hazırlanmış yüksək həssasiyyətli smoke detector. Bu cihaz, ən kiçik təhlükələri belə aşkar edərək maksimum təhlükəsizlik təmin edir. Kompakt dizaynı ilə istifadəsi asandır.",
+                'image' => 'products/p38.jpg',
+                'images' => [
+                    'products/p38.jpg',
+                    'products/p38.jpg',
+                    'products/p38.jpg',
+                    'products/p38.jpg',
+                ],
+                'price' => 140,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 2,
+                'tag_ids' => [3],
+            ],
+            [
+                //39
+                "title" => "Təhlükəsizlik Sistemi Təkmilləşdirilmiş Tüstü Alarmı",
+                "description" => "Bu yüksək performanslı tüstü alarmı ev və ofislər üçün ideal seçimdir. Təmiz dizayn və yüksək dəqiqliklə hazırlanmış cihaz təhlükəsizlik tədbirlərinizi maksimuma çatdırır. Həmçinin, uzunömürlülük və davamlılıqla yanaşı, istifadə rahatlığı ilə seçilir.",
+                'image' => 'products/p39.jpg',
+                'images' => [
+                    'products/p39.jpg',
+                    'products/p39.jpg',
+                    'products/p39.jpg',
+                    'products/p39.jpg',
+                ],
+                'price' => 100,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 4,
+                'tag_ids' => [3],
+            ],
+            [
+                //40
+                "title" => "Ezviz Smart Tüstü Detektoru",
+                "description" => "Ezviz-in ən son texnologiyasına sahib bu tüstü detektoru müasir həyat tərzinizə uyğunlaşdırılmışdır. Cihaz, minimal dizaynı və yüksək həssas sensorları ilə həm gözəllik, həm də funksionallığı bir araya gətirir. Kiçik ölçülərinə baxmayaraq, böyük təhlükəsizlik tədbirləri üçün nəzərdə tutulmuşdur.",
+                'image' => 'products/p40.jpeg',
+                'images' => [
+                    'products/p40.jpeg',
+                    'products/p40.jpeg',
+                    'products/p40.jpeg',
+                    'products/p40.jpeg',
+                ],
+                'price' => 110,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 4,
+                'tag_ids' => [3],
+            ],
+            [
+                //41
+                "title" => "Simsiz Tüstü Alarmı",
+                "description" => "Bu simsiz tüstü alarmı Ezviz-in müasir texnologiyaları ilə təchiz edilmişdir. Kabelsiz işləmə rahatlığı ilə yanaşı, yüksək həssas sensorları hər cür tüstü və təhlükəni dəqiq şəkildə aşkarlayır. Minimal dizayn və portativliyi ilə bu cihaz təhlükəsizlik tədbirlərinizi artırmaq üçün əvəzolunmazdır.",
+                'image' => 'products/p41.webp',
+                'images' => [
+                    'products/p41.webp',
+                    'products/p41.webp',
+                    'products/p41.webp',
+                    'products/p41.webp',
+                ],
+                'price' => 95,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 5,
+                'tag_ids' => [3],
+            ],
+            [
+                //42
+                "title" => "Tüstü Alarm Plus",
+                "description" => "Samsung markasının yüksək keyfiyyəti ilə təqdim olunan bu tüstü alarmı təhlükəsizlik üçün müasir həllər təklif edir. Cihaz, yüksək performans və uzunömürlü materiallarla istehsal olunmuşdur. Ev və ya iş yerlərində istifadə üçün ideal seçimdir.",
+                'image' => 'products/p42.jpg',
+                'images' => [
+                    'products/p42.jpg',
+                    'products/p42.jpg',
+                    'products/p42.jpg',
+                    'products/p42.jpg',
+                ],
+                'price' => 130,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 6,
+                'tag_ids' => [3],
+            ],
+            [
+                //43
+                "title" => "Ultra Tüstü Detektoru",
+                "description" => "CP Plus texnologiyasına əsaslanan bu tüstü detektoru ən yüksək standartlara cavab verir. Yüksək həssas sensorları və davamlı dizaynı ilə bu cihaz təhlükəsizliyinizə maksimum dərəcədə xidmət edəcək. Hər bir detala diqqət yetirərək, bu detektor ən yüksək performansı təmin edir.",
+                'image' => 'products/p43.png',
+                'images' => [
+                    'products/p43.png',
+                    'products/p43.png',
+                    'products/p43.png',
+                    'products/p43.png',
+                ],
+                'price' => 150,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 7,
+                'tag_ids' => [3],
+            ],
+            [
+                //44
+                "title" => "Mini Tüstü Alarmı",
+                "description" => "Igloohome markasının kiçik ölçülü tüstü alarmı yüksək funksionallıq təklif edir. Kompakt dizaynı ilə bu cihaz rahatlıqla daşınır və istifadəsi çox sadədir. Hər növ tüstü və təhlükəni dərhal aşkar edərək təhlükəsizliyinizə təminat verir.",
+                'image' => 'products/p44.jpg',
+                'images' => [
+                    'products/p44.jpg',
+                    'products/p44.jpg',
+                    'products/p44.jpg',
+                    'products/p44.jpg',
+                ],
+                'price' => 80,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 1,
+                'tag_ids' => [3],
+            ],
+            [
+                //45
+                "title" => "İkiqat Sensorlu Tüstü Alarmı",
+                "description" => "İkiqat sensor texnologiyasına malik olan bu tüstü alarmı ən kiçik detallarını belə müəyyən edir. Geniş təhlükəsizlik tədbirləri üçün nəzərdə tutulmuş cihaz müasir dizayn və yüksək həssaslığı birləşdirir. Ev və ofislərdə təhlükəsizliyinizi təmin etmək üçün ideal seçimdir.",
+                'image' => 'products/p45.png',
+                'images' => [
+                    'products/p45.png',
+                    'products/p45.png',
+                    'products/p45.png',
+                    'products/p45.png',
+                ],
+                'price' => 150,
+                'has_stock' => true,
+                'stock_quantity' => 5,
+                'category_ids' => [5],
+                'brand_ids' => 2,
+                'tag_ids' => [3],
+            ],
+
+            [
+                "title" => "Igloohome Smart Leakage Detector",
+                "description" => "Igloohome tərəfindən təqdim olunan bu ağıllı sızma detektoru müasir texnologiya ilə təchiz olunmuşdur. Cihaz su sızmalarını tez bir zamanda aşkarlayaraq evinizi təhlükəsiz saxlayır.",
+                'image' => 'products/p46.webp',
+                'images' => [
+                    'products/p46.webp',
+                    'products/p46.webp',
+                    'products/p46.webp',
+                    'products/p46.webp',
+                ],
+                "price" => 120,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2], // Leakage Detector
+                "brand_ids" => 1, // Igloohome
+                "tag_ids" => [4], // Su ilə bağlı təhlükəsizlik
+            ],
+            [
+                "title" => "HIK Vision Advanced Water Leakage Sensor",
+                "description" => "HIK Vision markasından yüksək dəqiqlikli su sızma detektoru. Təhlükəsizlik sisteminizə mükəmməl əlavə olan bu cihazla hər bir sızmanı anında aşkar edin.",
+                'image' => 'products/p47.webp',
+                'images' => [
+                    'products/p47.webp',
+                    'products/p47.webp',
+                    'products/p47.webp',
+                    'products/p47.webp',
+                ],
+                "price" => 150,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 2,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "D-Link Smart Water Sensor",
+                "description" => "D-Link tərəfindən təqdim olunan bu ağıllı su sensoru sızmaları dəqiq və tez bir zamanda aşkarlayır. Cihaz, təhlükəsizlik tədbirləriniz üçün vacib bir hissədir.",
+                'image' => 'products/p48.webp',
+                'images' => [
+                    'products/p48.webp',
+                    'products/p48.webp',
+                    'products/p48.webp',
+                    'products/p48.webp',
+                ],
+                "price" => 125,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 5,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "Samsung Premium Leakage Detector",
+                "description" => "Samsung markasından yüksək keyfiyyətli və davamlı sızma detektoru. Ev və iş yerləri üçün ideal olan bu cihazla təhlükəsizlik tədbirlərinizi maksimuma çatdırın.",
+                'image' => 'products/p49.webp',
+                'images' => [
+                    'products/p49.webp',
+                    'products/p49.webp',
+                    'products/p49.webp',
+                    'products/p49.webp',
+                ],
+                "price" => 200,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 6,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "CP Plus Ultra Water Leakage Alarm",
+                "description" => "CP Plus texnologiyasına əsaslanan bu cihaz su sızmalarını etibarlı şəkildə aşkarlayır. Kompakt dizaynı və asan istifadəsi ilə seçilir.",
+                'image' => 'products/p50.jpeg',
+                'images' => [
+                    'products/p50.jpeg',
+                    'products/p50.jpeg',
+                    'products/p50.jpeg',
+                    'products/p50.jpeg',
+                ],
+                "price" => 180,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 7,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "Igloohome Compact Leakage Detector",
+                "description" => "Kiçik ölçülü, lakin yüksək funksionallıqlı Igloohome sızma detektoru su sızmalarını dərhal aşkarlayır və təhlükəsizliyinizə xidmət edir.",
+                'image' => 'products/p51.jpg',
+                'images' => [
+                    'products/p51.jpg',
+                    'products/p51.jpg',
+                    'products/p51.jpg',
+                    'products/p51.jpg',
+                ],
+                "price" => 110,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 1,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "HIK Vision Mini Water Sensor",
+                "description" => "HIK Vision tərəfindən hazırlanmış kiçik ölçülü su sensoru ev və ofis təhlükəsizliyiniz üçün nəzərdə tutulmuşdur. Quraşdırılması asandır və effektiv nəticələr təmin edir.",
+                'image' => 'products/p52.jpg',
+                'images' => [
+                    'products/p52.jpg',
+                    'products/p52.jpg',
+                    'products/p52.jpg',
+                    'products/p52.jpg',
+                ],
+                "price" => 105,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 2,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "CP Plus High-Tech Leakage Detector",
+                "description" => "CP Plus texnologiyası ilə hazırlanmış bu cihaz müasir təhlükəsizlik həlləri üçün ideal seçimdir. Su sızmalarını yüksək dəqiqliklə aşkarlayır.",
+                'image' => 'products/p53.webp',
+                'images' => [
+                    'products/p53.webp',
+                    'products/p53.webp',
+                    'products/p53.webp',
+                    'products/p53.webp',
+                ],
+                "price" => 170,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 7,
+                "tag_ids" => [4],
+            ],
+            [
+                "title" => "Igloohome Ağıllı Sızma Sensoru",
+                "description" => "Igloohome-un yeni nəsil ağıllı su sensoru ev və iş yerlərində istifadə üçün nəzərdə tutulmuşdur. Kompakt dizayn və yüksək funksionallıqla təhlükəsizliyinizə xidmət edir.",
+                'image' => 'products/p54.jpg',
+                'images' => [
+                    'products/p54.jpg',
+                    'products/p54.jpg',
+                    'products/p54.jpg',
+                    'products/p54.jpg',
+                ],
+                "price" => 115,
+                "has_stock" => true,
+                "stock_quantity" => 5,
+                "category_ids" => [2],
+                "brand_ids" => 1,
+                "tag_ids" => [4],
+            ],
+
+
         ];
+
 
 
         foreach ($products as $productData) {

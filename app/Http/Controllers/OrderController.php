@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Helper\OrderStatus;
 use App\Models\BasketProduct;
 use App\Models\Basket;
+use App\Models\City;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,19 +36,15 @@ class OrderController extends Controller
                 'discount' => 'nullable|numeric|min:0|max:100',
                 'deliveryCharge' => 'nullable|numeric|min:0',
             ]);
-    
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 400);
             }
-    
             $validatedData = $validator->validated();
             $user = auth()->user();  // İstifadəçi məlumatını əldə edirik
     
             if (!$user) {
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
-    
-            // Basket modelini istifadə edərək səbəti tapırıq
             $basket = Basket::where('user_id', $user->id)
                 ->where('id', $validatedData['basket_id'])
                 ->first();
@@ -54,8 +52,6 @@ class OrderController extends Controller
             if (!$basket) {
                 return response()->json(['error' => 'This basket does not belong to the logged-in user.'], 400);
             }
-    
-            // Sifariş yaratmaq
             $order = Order::create([
                 'user_id' => $user->id,
                 'uid' => uniqid('ORD-'),
@@ -65,7 +61,7 @@ class OrderController extends Controller
                 'mobile_number' => $validatedData['addressData']['mobile_number'],
                 'address_line' => $validatedData['addressData']['address_line'],
                 'area' => $validatedData['addressData']['area'],
-                'city_id' => $validatedData['addressData']['city_id'],
+                'city_id' => $validatedData['addressData']['city_id'], // city_id-ni burda saxlayırıq
                 'pin_code' => $validatedData['addressData']['pin_code'],
                 'payment_type' => $validatedData['paymentData']['payment_type'],
                 'total' => 0, // Hesablamadan əvvəl sıfır
@@ -73,30 +69,26 @@ class OrderController extends Controller
             ]);
     
             $total = 0;
-    
-            // Məhsulların əlavə edilməsi
             foreach ($validatedData['checkoutCart'] as $cartItem) {
                 $product = Product::findOrFail($cartItem['product_id']);
                 if ($product->stock_quantity < $cartItem['quantity']) {
                     return response()->json(['error' => "Insufficient stock for product: {$product->name}"], 400);
                 }
-    
                 $lineTotal = $product->price * $cartItem['quantity'];
                 $total += $lineTotal;
     
+                // `city_id` məlumatını OrderDetail cədvəlinə əlavə edirik
                 OrderDetail::create([
                     'order_id' => $order->id,
                     'product_id' => $product->id,
                     'quantity' => $cartItem['quantity'],
                     'price' => $product->price,
                     'total' => $lineTotal,
+                    'city_id' => $validatedData['addressData']['city_id'], // Burda city_id-ni saxlayırıq
                 ]);
-    
-                // Stok miqdarını azaldırıq
                 $product->decrement('stock_quantity', $cartItem['quantity']);
             }
     
-            // Ümumi məbləğin hesablanması
             $discountAmount = $total * ($validatedData['discount'] ?? 0) / 100;
             $grandTotal = $total - $discountAmount + ($validatedData['deliveryCharge'] ?? 0);
     
@@ -107,6 +99,7 @@ class OrderController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
     
     private function validateData($validatedData)
     {
@@ -127,6 +120,31 @@ class OrderController extends Controller
             'basket_id' => 'required|exists:basket_products,id',
         ])->validate();
     }
+
+    
+    public function index()
+    {
+        // Bütün ünvanları çəkirik və əlaqəli city və state məlumatlarını yükləyirik
+        $addresses = Order::with(['city.state'])->get();
+    
+        // Ünvanları JSON formatında qaytarırıq, burada city adı və state adı da olacaq
+        return response()->json($addresses->map(function($address) {
+            return [
+                'order_id' => $address->id,
+                'name' => $address->name,
+                'area' => $address->area,
+                'pin_code' => $address->pin_code,
+                'address_line' => $address->address_line,
+                'city' => $address->city ? $address->city->name : null,  // City adı
+                'state' => $address->city && $address->city->state ? $address->city->state->name : null,  // State adı
+            ];
+        }));
+    }
+    
+
+    
+    
+    
 
 
     public function my_orders()

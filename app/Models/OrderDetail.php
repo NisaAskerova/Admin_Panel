@@ -13,7 +13,7 @@ class OrderDetail extends Model
     protected $table = 'order_details';
 
     // Mass Assignment üçün icazə verilmiş sütunlar
-    protected $fillable = ['order_id', 'product_id', 'quantity', 'price', 'total'];
+    protected $fillable = ['order_id', 'product_id', 'quantity', 'price', 'total', 'city_id'];
 
     // Əlaqələr
     public function order()
@@ -25,4 +25,13 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+
+    // Digər əlaqələr və metodlar
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }
+

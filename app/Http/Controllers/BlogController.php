@@ -159,4 +159,38 @@ class BlogController extends Controller
         $blog->delete();
         return response()->json(['message' => 'Information deleted successfully!'], 200);
     }
+
+ public function search(Request $request)
+{
+    $search = $request->input('search', ''); // Boş ola bilər
+    $blogs = Blog::where('title', 'LIKE', "%$search%")
+                 ->select('id', 'title', 'created_at', 'image') // Lazımlı sütunları seçirik
+                 ->orderBy('created_at', 'desc')
+                 ->get();
+
+    return response()->json($blogs); // JSON formatında qaytarırıq
+}
+
+
+public function showLatestBlogs()
+{
+    // Ən son 3 blogu götürmək üçün sorğu
+    $blogs = Blog::orderByDesc('id') // Ən son blogları sırala
+                 ->take(3)           // İlk 3 blogu götür
+                 ->select(
+                     'id',           // Blog ID-ni də seçin, çünki React-də `key` üçün lazımdır
+                     'title',
+                     'description',
+                     'image',
+                     'date_icon',
+                     'button_icon',
+                     'created_at'    // Tarixi React-də formatlamaq üçün əlavə edin
+                 )
+                 ->get();
+
+    // JSON formatında cavab qaytar
+    return response()->json($blogs, 200);
+}
+
+
 }

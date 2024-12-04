@@ -175,7 +175,9 @@ public function filter(Request $request)
     $minPrice = (float) $request->input('min_price', 0);
     $maxPrice = (float) $request->input('max_price', 1000000); // Maksimum qiymət
 
-    $query = Product::with(['categories', 'brands', 'tags']);
+    // Məhsul sorğusunu hazırlayırıq
+    $query = Product::with(['categories', 'brands', 'tags'])
+        ->withAvg('ratings', 'rating'); // Reytinqin orta qiymətini əlavə et
 
     if (!empty($categoryIds)) {
         $query->whereHas('categories', function ($query) use ($categoryIds) {
@@ -202,17 +204,21 @@ public function filter(Request $request)
         }
     }
 
+    // Məhsulları gətiririk
     $products = $query->get();
 
+    // Kategoriyalar və brendləri say ilə gətiririk
     $categories = Category::withCount('products')->get();
     $brands = Brand::withCount('products')->get();
 
+    // JSON olaraq cavab qaytarırıq
     return response()->json([
         'products' => $products,
         'categories' => $categories,
         'brands' => $brands
     ], 200);
 }
+
 
 }
 

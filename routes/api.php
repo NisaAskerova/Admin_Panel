@@ -29,8 +29,8 @@ Route::prefix('user')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
 });
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/me', [UserController::class, 'me']); 
-    Route::delete('/logout', [UserController::class, 'logout']); 
+    Route::get('/me', [UserController::class, 'me']);
+    Route::delete('/logout', [UserController::class, 'logout']);
 });
 
 Route::prefix('sliders')->group(function () {
@@ -107,6 +107,8 @@ Route::prefix('blogs')->group(function () {
     Route::delete('/main_info/{id}', [BlogController::class, 'deleteMainInfo']);
     Route::get('/main_info', [BlogController::class, 'getMainInfo']);
     Route::get('/get_blog/{id}', [BlogController::class, 'showBlogId']);
+    Route::get('/show_blog', [BlogController::class, 'showLatestBlogs']);
+    Route::get('/search', [BlogController::class, 'search']);
 
     Route::post('/store', [BlogController::class, 'store']);
     Route::post('/update/{id}', [BlogController::class, 'update']);
@@ -197,13 +199,14 @@ Route::prefix('basket')->group(function () {
     Route::get('/total', [BasketController::class, 'calculateTotal']);
     Route::post('/store', [BasketController::class, 'store']);
     Route::post('/updateQuantity/{action}', [BasketController::class, 'updateQuantity']);
-Route::delete('{basketId}/product/{productId}', [BasketController::class, 'removeProductFromBasket']);
-
+    Route::delete('{basketId}/product/{productId}', [BasketController::class, 'removeProductFromBasket']);
 });
 
 
-Route::prefix('orders')->group(function (){
+Route::prefix('orders')->group(function () {
     Route::post('/add', [OrderController::class, 'add']);
+    Route::get('/addresses', [OrderController::class, 'index']);
+Route::delete('/addresses/{id}', [OrderController::class, 'destroy']);
 });
 
 Route::prefix('states')->group(function () {
@@ -220,3 +223,5 @@ Route::prefix('cities')->group(function () {
     Route::post('/update/{id}', [CityController::class, 'update']); // Şəhəri yenilə
     Route::delete('/delete/{id}', [CityController::class, 'destroy']); // Şəhəri sil
 });
+
+
