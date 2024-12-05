@@ -155,6 +155,8 @@ Route::prefix('products')->group(function () {
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
     Route::post('{productId}/submit-review', [ProductController::class, 'submitReview']);
     Route::get('/reviews/{productId}', [ProductController::class, 'getReviews']);
+    Route::get('/search-products', [ProductController::class, 'search']);
+
 });
 
 

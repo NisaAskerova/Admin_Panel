@@ -157,11 +157,20 @@ public function delete($id)
 
 public function show_product($id)
 {
-    $product = Product::with(['categories', 'brands', 'tags', 'reviews', 'ratings'])->find($id);
+    // Məhsul məlumatını əlaqəli modellərlə birlikdə əldə edin
+    $product = Product::with(['categories', 'brands', 'tags', 'reviews', 'ratings'])
+        ->find($id);
 
     if (!$product) {
         return response()->json(['message' => 'Product not found'], 404);
     }
+
+    // Ortalama reytingi hesablayın
+    $averageRating = $product->ratings()->avg('rating');
+
+    // Məhsul məlumatına ortalama reytingi əlavə edin
+    $product->average_rating = $averageRating;
+
     return response()->json($product, 200);
 }
 
@@ -218,6 +227,28 @@ public function filter(Request $request)
         'brands' => $brands
     ], 200);
 }
+
+
+public function search(Request $request)
+{
+    $query = $request->input('query');
+    if (!$query) {
+        return response()->json(['message' => 'Axtarış mətni tələb olunur'], 400);
+    }
+
+    // Məhsulları başlıq və marka adına görə axtar
+    $products = Product::with('brands')  // brands əlaqəsini daxil et
+        ->where('title', 'LIKE', "%$query%")
+        ->orWhereHas('brands', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'LIKE', "%$query%");
+        })
+        ->select('id', 'title', 'image') // Lazımlı sütunları seçirik
+        ->take(5)  // Max 5 məhsul göstər
+        ->get();
+
+    return response()->json($products);
+}
+
 
 
 }

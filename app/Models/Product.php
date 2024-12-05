@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Product extends Model
 {
@@ -31,6 +32,7 @@ class Product extends Model
     {
         return $this->hasMany(Rating::class);
     }
+    
 
     public function averageRating()
     {
@@ -66,5 +68,10 @@ class Product extends Model
                     ->withPivot('quantity')
                     ->withTimestamps();
     }
+
+
+    
+    
+
 }
 

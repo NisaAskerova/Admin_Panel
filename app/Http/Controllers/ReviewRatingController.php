@@ -16,7 +16,11 @@ class ReviewRatingController extends Controller
             ->where('product_id', $productId)
             ->get();
     
-        // Add rating to the response if it's not already included
+        // Add rating_value for each review, handle the case when there is no rating
+        foreach ($reviews as $review) {
+            $review->rating_value = $review->rating ? $review->rating->rating : null; // Safe check for null
+        }
+    
         return response()->json($reviews);
     }
     
@@ -56,5 +60,4 @@ class ReviewRatingController extends Controller
             'rating' => $rating,
         ]);
     }
-    
 }

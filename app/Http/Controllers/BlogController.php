@@ -178,7 +178,7 @@ public function showLatestBlogs()
     $blogs = Blog::orderByDesc('id') // Ən son blogları sırala
                  ->take(3)           // İlk 3 blogu götür
                  ->select(
-                     'id',           // Blog ID-ni də seçin, çünki React-də `key` üçün lazımdır
+             'id',           // Blog ID-ni də seçin, çünki React-də `key` üçün lazımdır
                      'title',
                      'description',
                      'image',

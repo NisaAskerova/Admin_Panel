@@ -17,7 +17,7 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum')->only(['add', 'validateData']);
+        $this->middleware('auth:sanctum')->only(['add', 'validateData', 'index']);
     }
     public function add(Request $request)
     {
@@ -124,10 +124,18 @@ class OrderController extends Controller
     
     public function index()
     {
-        // Bütün ünvanları çəkirik və əlaqəli city və state məlumatlarını yükləyirik
-        $addresses = Order::with(['city.state'])->get();
-    
-        // Ünvanları JSON formatında qaytarırıq, burada city adı və state adı da olacaq
+        $user = auth()->user();  // İstifadəçi məlumatını əldə edirik
+        if (!$user) {
+            return response()->json(['error' => 'İstifadəçi giriş etməyib.'], 401);
+        }
+        
+        // Yalnızca giriş etmiş istifadəçinin sifarişlərini gətiririk
+        $addresses = Order::with(['city.state'])  // 'city' və 'state' əlaqələrini yükləyirik
+            ->where('user_id', $user->id)  // 'user_id' ilə müqayisə edirik
+            ->get();
+        
+      ;  // Məlumat strukturunu yoxlamaq üçün
+        
         return response()->json($addresses->map(function($address) {
             return [
                 'order_id' => $address->id,
@@ -135,8 +143,8 @@ class OrderController extends Controller
                 'area' => $address->area,
                 'pin_code' => $address->pin_code,
                 'address_line' => $address->address_line,
-                'city' => $address->city ? $address->city->name : null,  // City adı
-                'state' => $address->city && $address->city->state ? $address->city->state->name : null,  // State adı
+                'city' => $address->city ? $address->city->name : null,
+                'state' => $address->city && $address->city->state ? $address->city->state->name : null,
             ];
         }));
     }
