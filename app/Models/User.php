@@ -46,5 +46,8 @@ class User extends Authenticatable
         return $this->hasOne(Basket::class);
     }
     
-
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname; // Burada `surname` istifadəçinin soyadıdır
+    }
 }

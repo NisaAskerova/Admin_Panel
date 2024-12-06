@@ -4,11 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
-use App\Models\BlogMain; 
+use App\Models\BlogMain;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        // Only authenticated users with a valid API token can access these actions
+        $this->middleware('auth:sanctum')
+            ->only(
+                [
+                    'storeComment', 'viewComment'
+                ]
+            );
+    }
     public function storeMainInfo(Request $request)
     {
         $request->validate([
@@ -122,7 +134,7 @@ class BlogController extends Controller
             $this->deleteFile($blog->button_icon);
             $blog->button_icon = $this->uploadFile($request->file('button_icon'), 'icons');
         }
-        
+
         $blog->title = $request->title ?: $blog->title;
         $blog->description = $request->description ?: $blog->description;
         $blog->detail_short_description = $request->detail_short_description ?: $blog->detail_short_description;
@@ -145,52 +157,95 @@ class BlogController extends Controller
         }
     }
 
-    public function show(){
+    public function show()
+    {
         // Blogları yaradılma tarixinə görə son tarixdən əvvəlki sıralama ilə alırıq
         $blogs = Blog::orderByDesc('id')->get();
         return response()->json($blogs, 200);
     }
-    public function showBlogId($id){
+    public function showBlogId($id)
+    {
         $blogs = Blog::findOrFail($id);
         return response()->json($blogs, 200);
     }
-    public function delete($id){
-        $blog=Blog::findOrFail($id);
+    public function delete($id)
+    {
+        $blog = Blog::findOrFail($id);
         $blog->delete();
         return response()->json(['message' => 'Information deleted successfully!'], 200);
     }
 
- public function search(Request $request)
-{
-    $search = $request->input('search', ''); // Boş ola bilər
-    $blogs = Blog::where('title', 'LIKE', "%$search%")
-                 ->select('id', 'title', 'created_at', 'image') // Lazımlı sütunları seçirik
-                 ->orderBy('created_at', 'desc')
-                 ->get();
+    public function search(Request $request)
+    {
+        $search = $request->input('search', ''); // Boş ola bilər
+        $blogs = Blog::where('title', 'LIKE', "%$search%")
+            ->select('id', 'title', 'created_at', 'image') // Lazımlı sütunları seçirik
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-    return response()->json($blogs); // JSON formatında qaytarırıq
-}
-
-
-public function showLatestBlogs()
-{
-    // Ən son 3 blogu götürmək üçün sorğu
-    $blogs = Blog::orderByDesc('id') // Ən son blogları sırala
-                 ->take(3)           // İlk 3 blogu götür
-                 ->select(
-             'id',           // Blog ID-ni də seçin, çünki React-də `key` üçün lazımdır
-                     'title',
-                     'description',
-                     'image',
-                     'date_icon',
-                     'button_icon',
-                     'created_at'    // Tarixi React-də formatlamaq üçün əlavə edin
-                 )
-                 ->get();
-
-    // JSON formatında cavab qaytar
-    return response()->json($blogs, 200);
-}
+        return response()->json($blogs); // JSON formatında qaytarırıq
+    }
 
 
+    public function showLatestBlogs()
+    {
+        // Ən son 3 blogu götürmək üçün sorğu
+        $blogs = Blog::orderByDesc('id')
+            ->take(3)
+            ->select('id', 'title', 'description', 'image', 'date_icon', 'button_icon', 'created_at')
+            ->get();
+
+        // JSON formatında cavab qaytar
+        return response()->json($blogs, 200);
+    }
+
+
+    public function storeComment(Request $request, $blogId)
+    {
+        \Log::info('Received blogId: ' . $blogId);  // blogId-nin dəyərini log edirik
+    
+        // blog_id yoxlanır
+        if (!$blogId) {
+            return response()->json(['error' => 'Blog ID tapılmadı'], 400);
+        }
+    
+        // Giriş yoxlanır
+        $userId = Auth::id();
+        if (!$userId) {
+            return response()->json(['error' => 'Giriş tələb olunur'], 401);
+        }
+    
+        // Validasiya
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'comment' => 'required|string',
+        ]);
+    
+        // Şərh əlavə etmək
+        Comment::create([
+            'blog_id' => $blogId,  // blog_id parametrini burda alırıq
+            'user_id' => $userId,
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
+        ]);
+    
+        return response()->json(['message' => 'Şərhiniz uğurla əlavə edildi!'], 201);
+    }
+    
+
+
+    public function viewComment($blogId)
+    {
+        $comments = Comment::where('blog_id', $blogId)->get();
+        
+        if ($comments->isEmpty()) {
+            return response()->json(['message' => 'No comments available'], 404);
+        }
+        
+        return response()->json($comments);
+    }
+    
+    
 }

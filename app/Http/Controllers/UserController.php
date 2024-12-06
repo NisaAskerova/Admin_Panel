@@ -139,5 +139,29 @@ class UserController extends Controller
             ], 500); // Internal Server Error
         }
     }
+    public function getUserInfo()
+    {
+        // Daxil olmuş istifadəçini al
+        $user = Auth::user();
+
+        // İstifadəçinin məlumatlarını JSON olaraq qaytar
+        return response()->json($user);
+    }
+    public function getUserDetails()
+    {
+        // Daxil olmuş istifadəçini al
+        $user = Auth::user();
+    
+        // Yalnız ad və email qaytar, əgər istifadəçi mövcud deyilsə, xətanı qaytar
+        if (!$user) {
+            return response()->json(['error' => 'İstifadəçi tapılmadı.'], 404);
+        }
+    
+        return response()->json([
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+        ]);
+    }
     
 }

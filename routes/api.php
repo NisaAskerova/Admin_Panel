@@ -27,6 +27,7 @@ use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
+    Route::middleware('auth:api')->get('/detail', [UserController::class, 'getUserDetails']);
 });
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', [UserController::class, 'me']);
@@ -109,6 +110,9 @@ Route::prefix('blogs')->group(function () {
     Route::get('/get_blog/{id}', [BlogController::class, 'showBlogId']);
     Route::get('/show_blog', [BlogController::class, 'showLatestBlogs']);
     Route::get('/search', [BlogController::class, 'search']);
+    Route::post('/{blogId}/add_comment', [BlogController::class, 'storeComment']);
+    Route::get('{blogId}/comments', [BlogController::class, 'viewComment']); // Ensure this matches the method
+    
 
     Route::post('/store', [BlogController::class, 'store']);
     Route::post('/update/{id}', [BlogController::class, 'update']);

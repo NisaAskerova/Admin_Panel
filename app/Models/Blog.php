@@ -17,5 +17,9 @@ class Blog extends Model
         'detail_text',
         'detail_short_description',
     ];
-    
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
 }
