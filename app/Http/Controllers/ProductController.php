@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Basket;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -14,7 +15,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    
+    public function __construct()
+    {
+        // Only authenticated users with a valid API token can access these actions
+        $this->middleware('auth:sanctum')
+            ->only(
+                [
+                    'show_product',
+                ]
+            );
+    }
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -154,25 +164,34 @@ public function delete($id)
 }
 
 
-
 public function show_product($id)
 {
     // Məhsul məlumatını əlaqəli modellərlə birlikdə əldə edin
-    $product = Product::with(['categories', 'brands', 'tags', 'reviews', 'ratings'])
+    $product = Product::with(['categories', 'brands', 'tags', 'reviews', 'ratings', 'baskets'])
         ->find($id);
 
     if (!$product) {
         return response()->json(['message' => 'Product not found'], 404);
     }
 
-    // Ortalama reytingi hesablayın
-    $averageRating = $product->ratings()->avg('rating');
+    // İstifadəçinin ID-sini alırıq
+    $user = auth()->user();
 
-    // Məhsul məlumatına ortalama reytingi əlavə edin
+    // Əgər istifadəçi daxil olubsa, onun səbətindəki məhsul miqdarını hesablayırıq
+    $basketQuantity = 0;
+    if ($user) {
+        $basketQuantity = $product->baskets()->where('user_id', $user->id)->sum('quantity');
+    }
+
+    // Orta qiymət dərəcəsi
+    $averageRating = $product->ratings()->avg('rating');
     $product->average_rating = $averageRating;
+    $product->basket_quantity = $basketQuantity;
 
     return response()->json($product, 200);
 }
+
+
 
 
 

@@ -11,6 +11,7 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
+                //1
                 'title' => 'Yüksək Görüntü Kamera',
                 'description' => 'Bir səhifənin düzəninə baxarkən oxuyucu səhifənin oxunaqlı məzmunu ilə diqqətinin yayılacağı artıq uzun müddət məlum olmuş bir faktdır.',
                 'image' => 'products/p1.png',
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
+                 //2
                 'title' => 'Full HD WiFi Kamera',
                 'description' => 'Full HD WiFi Kamera yüksək keyfiyyətli video təmin edərək problemsiz simsiz bağlantı təqdim edir. Bu kamera, ev və ofis təhlükəsizliyi üçün ideal olan aydın və detallı nəzarət görüntüləri təqdim etmək üçün hazırlanmışdır. Kameranın inkişaf etmiş xüsusiyyətlərinə hərəkət aşkarlama, real vaxt xəbərdarlıqları və ağıllı ev sistemləri ilə asan inteqrasiya daxildir.',
                 'image' => 'products/p2.png',
@@ -47,6 +49,7 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
+                 //3
                 'title' => 'Ağıllı Qapı Kilidi',
                 'description' => 'Ağıllı Qapı Kilidi, asan quraşdırma və smartfon idarəetməsi ilə inkişaf etmiş təhlükəsizlik xüsusiyyətləri təklif edir. Bu innovativ kilid, açarsız giriş və real vaxtda daxilolma idarəçiliyi təmin edərək evinizin təhlükəsizliyini artırır.',
                 'image' => 'products/p3.png',
@@ -65,6 +68,7 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [3],
             ],
             [
+                 //4
                 'title' => 'Ultra HDR Kamera',
                 'description' => 'Ultra HDR Kamera, ətraflı nəzarət üçün heyrətamiz yüksək dinamik aralıq video təqdim edir. Bu kamera, həm parlaq, həm də qaranlıq sahələrdə ən incə detalları çəkmək üçün hazırlanmışdır, bu da istənilən ərazi üçün yüksək keyfiyyətli video təmin edir. Xüsusiyyətləri arasında hərəkət aşkarlama, real vaxt xəbərdarlıqları və ağıllı ev sistemləri ilə problemsiz inteqrasiya daxildir. Güclü quruluşu və etibarlı performansı, hər hansı bir təhlükəsizlik quruluşu üçün onu ən yaxşı seçim edir.',
                 'image' => 'products/p4.png',
@@ -83,6 +87,7 @@ class ProductSeeder extends Seeder
                 'tag_ids' => [1],
             ],
             [
+                
                 'title' => 'Simsiz Kamera',
                 'description' => 'Simsiz Kamera, problemsiz bağlantı və yüksək keyfiyyətli video yazma təqdim edir. Bu kamera, hər yerdə rahatlıqla yerləşdirilə bilən çox yönlü və portativ bir təhlükəsizlik həlli axtaranlar üçün mükəmməldir. Simsiz xüsusiyyətləri sayəsində kabel idarə etməsi haqqında narahat olmadan asanlıqla istənilən yerdə yerləşdirilə bilər. Aydın video keyfiyyəti, hərəkət aşkarlama və real vaxtda bildirişlər təqdim edir. Kamera həmçinin müxtəlif ağıllı ev sistemləri ilə uyğun gəlir, bu da onu təhlükəsizlik quruluşunuza rahat bir əlavə edir.',
                 'image' => 'products/p5.png',

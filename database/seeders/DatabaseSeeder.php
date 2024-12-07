@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OurTeamSeeder::class);  
         $this->call(StateSeeder::class);  
         $this->call(CitySeeder::class);  
+        $this->call(CommentSeeder::class);  
+        $this->call(ReviewSeeder::class);  
     }
 }
