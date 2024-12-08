@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    protected $fillable = ['product_id', 'user_id', 'rating'];
+    protected $fillable = ['product_id', 'user_id', 'rating', 'review_id'];
 
     public function product()
     {
@@ -17,11 +17,12 @@ class Rating extends Model
     {
         return $this->belongsTo(User::class);
     }
- // Rating Model
-public function review()
-{
-    return $this->belongsTo(Review::class, 'product_id', 'product_id');
+
+    // Review modeline olan ilişkiyi de gözden geçirebiliriz
+    public function review()
+    {
+        return $this->belongsTo(Review::class, 'review_id');
+    }
+    
 }
 
-
-}
