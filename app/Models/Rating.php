@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    protected $fillable = ['product_id', 'user_id', 'rating', 'review_id'];
+    protected $fillable = [
+        'product_id',
+        'user_id',
+        'rating',
+        'review_id'
+    ];
 
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,6 +28,4 @@ class Rating extends Model
     {
         return $this->belongsTo(Review::class, 'review_id');
     }
-    
 }
-

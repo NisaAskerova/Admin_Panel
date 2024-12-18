@@ -192,9 +192,6 @@ public function show_product($id)
 }
 
 
-
-
-
 public function filter(Request $request)
 {
     $categoryIds = $request->input('category_ids', []);

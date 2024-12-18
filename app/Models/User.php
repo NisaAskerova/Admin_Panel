@@ -50,4 +50,10 @@ class User extends Authenticatable
     {
         return $this->name . ' ' . $this->surname; // Burada `surname` istifadəçinin soyadıdır
     }
+
+    public function favorites()
+{
+    return $this->belongsToMany(Product::class, 'favorites');
+}
+
 }

@@ -69,7 +69,11 @@ class Product extends Model
                     ->withTimestamps();
     }
 
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+    
     
     
 

@@ -16,6 +16,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -228,6 +229,13 @@ Route::prefix('cities')->group(function () {
     Route::get('/show/{id}', [CityController::class, 'show']); // Şəhər detalları
     Route::post('/update/{id}', [CityController::class, 'update']); // Şəhəri yenilə
     Route::delete('/delete/{id}', [CityController::class, 'destroy']); // Şəhəri sil
+});
+
+Route::prefix('favorites')->group(function () {
+    Route::get('/get_favorites', [FavoriteController::class, 'showFavorites']);
+    Route::get('/get_favoritId', [FavoriteController::class, 'showFavoriteID']);
+    Route::post('/add_favorite/{productId}', [FavoriteController::class, 'addToFavorites'])->name('favorites.add'); 
+    Route::delete('/{productId}', [FavoriteController::class, 'removeFromFavorites'])->name('favorites.remove');
 });
 
 
